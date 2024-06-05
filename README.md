@@ -15,12 +15,12 @@ In general we expect to focus on developing explainers that:
 ## How to add an Explainer
 1. write up a minimum viable (or more) explainer
 2. get reviews and approvals from your senior standards person (ask [@tantek](https://github.com/tantek) for who) and the CTO office (ask [@martinthomson](https://github.com/martinthomson) for who)
-3. convert your draft explainer to a name.md (or .html) file, submit a PR to add the file to this repo and link to it from Current Explainers below
+3. convert your draft explainer to markdown, submit a PR to add the file to this repo and link to it from Current Explainers below
 
 ## Minimum viable explainer
 Start your explainer with at least:
 
-0. short-name (for name.md or .html explainer file)
+0. a short name (for the directory that will hold your explainer)
 1. user problem(s) to be solved with a new/improved standard, at least a one sentence description
 
 ## Explainer sections
