@@ -12,6 +12,17 @@ In general we expect to focus on developing explainers that:
 * and propose a solution aligned with the Web Vision
 * or a counterproposal that is more aligned with the Web Vision than existing technologies or proposals
 
+## Current Explainers
+* none currently.
+
+## Migrated Explainers
+Explainers migrated to an incubation group or standards working group.
+* none currently.
+
+## Archived Explainers
+Explainers we are no longer pursuing, have been superseded, or have been incorporated into another explainer.
+* none currently.
+
 ## How to add an Explainer
 1. write up a minimum viable (or more) explainer
 2. get reviews and approvals from your senior standards person (ask [@tantek](https://github.com/tantek) for who) and the CTO office (ask [@martinthomson](https://github.com/martinthomson) for who)
@@ -66,15 +77,3 @@ Iterate by:
 When there is consensus on an incubation or standardization destination for the explainer, 
 follow the destination’s process for migrating into it.
 
-## Current Explainers
-* none currently.
-
-## Migrated Explainers
-Explainers migrated to an incubation group or standards working group.
-* none currently.
-
-## Archived Explainers
-Explainers we are no longer pursuing, have been superseded, or have been incorporated into another explainer.
-* none currently.
-
- 
