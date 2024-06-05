@@ -39,8 +39,6 @@ Expand your explainer with the following sections, in order:
  * an incubation destination (e.g. WICG, WHATWG stage 0, or TC39 stage 0),
  * or a standards working group, e.g. CSS WG (which incubates internally) or a WHATWG work stream if applicable
 
-Consult the TAG [guidance on writing a good explainer](https://tag.w3.org/explainers/).
-
 ## Explainer file progress
 This repo is for developing explainer files until ready for external feedback, 
 or archival if we decide an explainer is no longer worth pursuing.
