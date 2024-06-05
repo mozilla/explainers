@@ -1,7 +1,5 @@
 # Mozilla Explainers
 
-This document is a work in progress.
-
 This repo is for the development of explainers from Mozilla contributors. 
 Mozilla Explainers can start with as little as a sentence summarizing a user-relevant problem 
 and how a new technology could help solve it.
