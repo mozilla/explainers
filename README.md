@@ -12,3 +12,7 @@ In general we expect to focus on developing explainers that:
 * and propose a solution aligned with the Web Vision
 * or a counterproposal that is more aligned with the Web Vision than existing technologies or proposals
 
+## How to add an Explainer
+1. write up a minimum viable (or more) draft explainer
+2. get reviews and approvals from your senior standards person (ask [@tantek](https://github.com/tantek) for who) and the CTO office (ask [@martinthomson](https://github.com/martinthomson) for who)
+3. convert your draft explainer to a name.md file and submit a PR to add the file to this repo
