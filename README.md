@@ -76,3 +76,12 @@ Iterate by:
 When there is consensus on an incubation or standardization destination for the explainer, 
 follow the destination’s process for migrating into it.
 
+## References
+Useful reading before/while writing an Explainer:
+* https://tag.w3.org/explainers/ — The W3C TAG’s Explainers Explainer
+* https://www.mozilla.org/en-US/about/webvision/full/ — Mozilla’s vision for the evolution of the Web
+
+Real world examples of explainers from other organizations (alphabetical by URL) — check these for similar problems being solved, opportunities to collaborate rather than create a new explainer:
+* https://github.com/explainers-by-googlers/ 
+* https://github.com/MicrosoftEdge/MSEdgeExplainers/
+* https://github.com/WebKit/explainers
