@@ -184,19 +184,19 @@ With two sites and four ads (one for hats, three for shoes), the advertiser deci
 We now follow the journey of a single user. This user is browsing the social network site and is shown shoe ad number 2. The site asks the browser to save an impression.
 
 ```javascript
-navigator.privateAttribution.saveImpression({ type: "view", ad: "shoes", index: 2 });
+navigator.privateAttribution.saveImpression({ type: "view", index: 2, ad: "shoes" });
 ```
 
 This user does not interact with this ad, but they do click shoe ad 3 on the news site when it next appears.
 
 ```javascript
-navigator.privateAttribution.saveImpression({ type: "click", ad: "shoes", index: 7 });
+navigator.privateAttribution.saveImpression({ type: "click", index: 7, ad: "shoes" });
 ```
 
 Meanwhile, back on the social network site, they are also shown an ad for a hat.
 
 ```javascript
-navigator.privateAttribution.saveImpression({ ad: "hats", index: 4 });
+navigator.privateAttribution.saveImpression({ index: 4, ad: "hats" });
 ```
 
 They then add a pair of shoes to a cart, which the advertiser considers a conversion event worth measuring. The advertiser requests that a conversion report is generated.
