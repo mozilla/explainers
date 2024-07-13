@@ -117,9 +117,9 @@ navigator.privateAttribution.measureConversion({
   // the type of impression to match against (if omitted, match either)
   impression: "view",
   // a list of possible ad identifiers that can be attributed
-  ads: \["moz-ads-feb-eijb"\],
+  ads: ["moz-ads-feb-eijb"],
   // a list of sites where impressions might have been registered
-  source: \["publisher.example"\]
+  source: ["publisher.example"]
 });
 ```
 
@@ -131,8 +131,8 @@ dictionary PrivateAttributionConversionOptions {
   required unsigned long histogramSize;
   unsigned long lookbackDays = Infinity;
   PrivateAttributionImpressionType impression;
-  sequence&lt;DOMString&gt; ads = [];
-  sequence&lt;UTF8String&gt; sources = [];
+  sequence<DOMString> ads = [];
+  sequence<UTF8String> sources = [];
 };
 
 [SecureContext, Exposed=Window]
@@ -204,7 +204,7 @@ They then add a pair of shoes to a cart, which the advertiser considers a conver
 ```javascript
 navigator.privateAttribution.measureConversion({
   task: "1s53f_aer0FJeX3j1f_avRedF03nFGIn30djnw2359s", size: 8,
-  ads: \["shoes"\], sources: \["news.example", "social.example"\],
+  ads: ["shoes"], sources: ["news.example", "social.example"],
 });
 ```
 
