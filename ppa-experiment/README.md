@@ -119,7 +119,7 @@ navigator.privateAttribution.measureConversion({
   // a list of possible ad identifiers that can be attributed
   ads: ["moz-ads-feb-eijb"],
   // a list of sites where impressions might have been registered
-  sources: ["publisher.example"]
+  sources: ["publisher.example"],
 });
 ```
 
@@ -203,8 +203,10 @@ They then add a pair of shoes to a cart, which the advertiser considers a conver
 
 ```javascript
 navigator.privateAttribution.measureConversion({
-  task: "1s53f_aer0FJeX3j1f_avRedF03nFGIn30djnw2359s", size: 8,
-  ads: ["shoes"], sources: ["news.example", "social.example"],
+  task: "1s53f_aer0FJeX3j1f_avRedF03nFGIn30djnw2359s",
+  size: 8,
+  ads: ["shoes"],
+  sources: ["news.example", "social.example"],
 });
 ```
 
