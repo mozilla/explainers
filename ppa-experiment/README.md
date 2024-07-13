@@ -119,7 +119,7 @@ navigator.privateAttribution.measureConversion({
   // a list of possible ad identifiers that can be attributed
   ads: ["moz-ads-feb-eijb"],
   // a list of sites where impressions might have been registered
-  source: ["publisher.example"]
+  sources: ["publisher.example"]
 });
 ```
 
