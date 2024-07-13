@@ -184,13 +184,13 @@ With two sites and four ads (one for hats, three for shoes), the advertiser deci
 We now follow the journey of a single user. This user is browsing the social network site and is shown shoe ad number 2. The site asks the browser to save an impression.
 
 ```javascript
-navigator.privateAttribution.saveImpression({ type: "view", index: 2, ad: "shoes" });
+navigator.privateAttribution.saveImpression({ type: "view", index: 6, ad: "shoes" });
 ```
 
 This user does not interact with this ad, but they do click shoe ad 3 on the news site when it next appears.
 
 ```javascript
-navigator.privateAttribution.saveImpression({ type: "click", index: 7, ad: "shoes" });
+navigator.privateAttribution.saveImpression({ type: "click", index: 3, ad: "shoes" });
 ```
 
 Meanwhile, back on the social network site, they are also shown an ad for a hat.
@@ -214,16 +214,16 @@ The browser then considers its store of impressions for “advertiser.example”
 
 | Time | Type | Ad  | Source | Index |
 | --- | --- | --- | --- | --- |
-| 123456 | view | shoes | social.example | 2   |
+| 123456 | view | shoes | social.example | 6   |
 | --- | --- | --- | --- | --- |
-| 123458 | click | shoes | news.example | 7   |
+| 123458 | click | shoes | news.example | 3   |
 | --- | --- | --- | --- | --- |
 | 123459 | view | hats | social.example | 4   |
 | --- | --- | --- | --- | --- |
 
 The privacy budget is consulted for “advertising.example”, but as this is their first conversion report, that record does not exist.
 
-The hat impression is most recent, but this does not match. The click impression for shoes is selected, resulting in an index of 7. The browser constructs a histogram with 8 buckets and values of \[0, 0, 0, 0, 0, 0, 0, 1\]. The browser updates the privacy budget for “advertising.example”, recording that one attributed conversion has been used.
+The hat impression is most recent, but this does not match. The click impression for shoes is selected, resulting in an index of 3. The browser constructs a histogram with 8 buckets and values of \[0, 0, 0, 1, 0, 0, 0, 0\]. The browser updates the privacy budget for “advertising.example”, recording that one attributed conversion has been used.
 
 The histogram values are then split into secret shares, encrypted, and submitted using DAP to the task that is configured on the aggregation service. The aggregation service validates the report and adds the report to those that it will later aggregate.
 
