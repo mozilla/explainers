@@ -82,7 +82,7 @@ This follows the WebIDL interface below:
 
 ```webidl
 enum PrivateAttributionImpressionType { "view", "click" };
-  dictionary PrivateAttributionImpressionOptions {
+dictionary PrivateAttributionImpressionOptions {
   PrivateAttributionImpressionType type = "view";
   required unsigned long index;
   required DOMString ad;
