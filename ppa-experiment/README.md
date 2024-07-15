@@ -82,7 +82,7 @@ This follows the WebIDL interface below:
 
 ```webidl
 enum PrivateAttributionImpressionType { "view", "click" };
-  dictionary PrivateAttributionImpressionOptions {
+dictionary PrivateAttributionImpressionOptions {
   PrivateAttributionImpressionType type = "view";
   required unsigned long index;
   required DOMString ad;
@@ -110,16 +110,16 @@ navigator.privateAttribution.measureConversion({
   // the task id of the aggregation job (given to the advertiser by Mozilla)
   task: "1s53f_aer0FJeX3j1f_avRedF03nFGIn30djnw2359s",
   // the number of buckets in the histogram for this task
-  "size": 20,
+  size: 20,
 
   // only consider impressions within the last N days
   lookbackDays: 30,
   // the type of impression to match against (if omitted, match either)
   impression: "view",
   // a list of possible ad identifiers that can be attributed
-  ads: \["moz-ads-feb-eijb"\],
+  ads: ["moz-ads-feb-eijb"],
   // a list of sites where impressions might have been registered
-  source: \["publisher.example"\]
+  sources: ["publisher.example"],
 });
 ```
 
@@ -131,8 +131,8 @@ dictionary PrivateAttributionConversionOptions {
   required unsigned long histogramSize;
   unsigned long lookbackDays = Infinity;
   PrivateAttributionImpressionType impression;
-  sequence&lt;DOMString&gt; ads = [];
-  sequence&lt;UTF8String&gt; sources = [];
+  sequence<DOMString> ads = [];
+  sequence<UTF8String> sources = [];
 };
 
 [SecureContext, Exposed=Window]
@@ -184,27 +184,29 @@ With two sites and four ads (one for hats, three for shoes), the advertiser deci
 We now follow the journey of a single user. This user is browsing the social network site and is shown shoe ad number 2. The site asks the browser to save an impression.
 
 ```javascript
-navigator.privateAttribution.saveImpression({ type: "view", ad: "shoes", index: 2 });
+navigator.privateAttribution.saveImpression({ type: "view", index: 6, ad: "shoes" });
 ```
 
 This user does not interact with this ad, but they do click shoe ad 3 on the news site when it next appears.
 
 ```javascript
-navigator.privateAttribution.saveImpression({ type: "click", ad: "shoes", index: 7 });
+navigator.privateAttribution.saveImpression({ type: "click", index: 3, ad: "shoes" });
 ```
 
 Meanwhile, back on the social network site, they are also shown an ad for a hat.
 
 ```javascript
-navigator.privateAttribution.saveImpression({ ad: "hats", index: 4 });
+navigator.privateAttribution.saveImpression({ index: 4, ad: "hats" });
 ```
 
 They then add a pair of shoes to a cart, which the advertiser considers a conversion event worth measuring. The advertiser requests that a conversion report is generated.
 
 ```javascript
 navigator.privateAttribution.measureConversion({
-  task: "1s53f_aer0FJeX3j1f_avRedF03nFGIn30djnw2359s", size: 8,
-  ads: \["shoes"\], sources: \["news.example", "social.example"\],
+  task: "1s53f_aer0FJeX3j1f_avRedF03nFGIn30djnw2359s",
+  size: 8,
+  ads: ["shoes"],
+  sources: ["news.example", "social.example"],
 });
 ```
 
@@ -212,16 +214,16 @@ The browser then considers its store of impressions for “advertiser.example”
 
 | Time | Type | Ad  | Source | Index |
 | --- | --- | --- | --- | --- |
-| 123456 | view | shoes | social.example | 2   |
+| 123456 | view | shoes | social.example | 6   |
 | --- | --- | --- | --- | --- |
-| 123458 | click | shoes | news.example | 7   |
+| 123458 | click | shoes | news.example | 3   |
 | --- | --- | --- | --- | --- |
 | 123459 | view | hats | social.example | 4   |
 | --- | --- | --- | --- | --- |
 
 The privacy budget is consulted for “advertising.example”, but as this is their first conversion report, that record does not exist.
 
-The hat impression is most recent, but this does not match. The click impression for shoes is selected, resulting in an index of 7. The browser constructs a histogram with 8 buckets and values of \[0, 0, 0, 0, 0, 0, 0, 1\]. The browser updates the privacy budget for “advertising.example”, recording that one attributed conversion has been used.
+The hat impression is most recent, but this does not match. The click impression for shoes is selected, resulting in an index of 3. The browser constructs a histogram with 8 buckets and values of \[0, 0, 0, 1, 0, 0, 0, 0\]. The browser updates the privacy budget for “advertising.example”, recording that one attributed conversion has been used.
 
 The histogram values are then split into secret shares, encrypted, and submitted using DAP to the task that is configured on the aggregation service. The aggregation service validates the report and adds the report to those that it will later aggregate.
 
