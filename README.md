@@ -11,7 +11,7 @@ In general we expect to focus on developing explainers that:
 * or a counterproposal that is more aligned with the Web Vision than existing technologies or proposals
 
 ## Current Explainers
-* [Privacy-Preserving Attribution Measurement API](https://github.com/mozilla/explainers/tree/main/ppa-experiment)
+* [Privacy-Preserving Attribution Measurement API](https://github.com/mozilla/explainers/tree/main/ppa-experiment) ([ppa-experiment issues](https://github.com/mozilla/explainers/issues?q=is%3Aissue+is%3Aopen+%5Bppa-experiment%5D))
 * ...
 
 ## Migrated Explainers
