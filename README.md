@@ -14,6 +14,12 @@ In general we expect to focus on developing explainers that:
 * [Privacy-Preserving Attribution Measurement API](https://github.com/mozilla/explainers/tree/main/ppa-experiment) ([ppa-experiment issues](https://github.com/mozilla/explainers/issues?q=is%3Aissue+is%3Aopen+%5Bppa-experiment%5D))
 * ...
 
+## Feedback on Explainers
+We strongly prefer external feedback only on explainers that are in their own repo (see [Explainer file progress](#explainer-file-progress)).
+
+If you see something in a Mozilla Explainer that you want to suggest changing or fixing, please file an issue describing the problem and suggested resolution, not a pull request.  
+Exception: minor non-substantive or typographical changes may be submitted as PRs.
+
 ## Migrated Explainers
 Explainers migrated to an incubation group or standards working group.
 * none currently.
