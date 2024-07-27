@@ -110,7 +110,7 @@ navigator.privateAttribution.measureConversion({
   // the task id of the aggregation job (given to the advertiser by Mozilla)
   task: "1s53f_aer0FJeX3j1f_avRedF03nFGIn30djnw2359s",
   // the number of buckets in the histogram for this task
-  size: 20,
+  histogramSize: 20,
 
   // only consider impressions within the last N days
   lookbackDays: 30,
@@ -204,7 +204,7 @@ They then add a pair of shoes to a cart, which the advertiser considers a conver
 ```javascript
 navigator.privateAttribution.measureConversion({
   task: "1s53f_aer0FJeX3j1f_avRedF03nFGIn30djnw2359s",
-  size: 8,
+  histogramSize: 8,
   ads: ["shoes"],
   sources: ["news.example", "social.example"],
 });
