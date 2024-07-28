@@ -50,8 +50,6 @@ Advertisements and conversions often appear on different sites. Sites cannot per
 
 Our interface is as simple as possible, coming in two parts: impression registration and conversion.
 
-![](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR4XmP4//8/AwAI/AL+GwXmLwAAAABJRU5ErkJggg==)
-
 At impression time, information about an advertisement is saved by the browser in a write-only store. This includes an identifier for the ad and whether this was an ad view or an ad click.
 
 At conversion time, information for aggregation is created based on the impressions that were previously stored. The converting site can select impressions based on the ad identifier and whether it was a click or a view.
