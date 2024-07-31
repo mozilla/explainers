@@ -61,7 +61,7 @@ or archival if we decide an explainer is no longer worth pursuing.
 
 For new minimum explainers (with sections 1-5 or fewer):
 * iterate promptly with PRs adding sections up through 6 within 2-4 weeks of publishing your minimum explainer
-* create (at least) one new PR for each section added and request a repo owner review/approval and merge accordingly
+* create a PR with at least one additional section and request a repo owner review/approval and merge accordingly
 * start drafting additional PRs for sections up through 10
 
 When ready to solicit external feedback on an explainer:
