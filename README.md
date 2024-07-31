@@ -60,9 +60,7 @@ This repo is for developing explainer files until ready for external feedback,
 or archival if we decide an explainer is no longer worth pursuing.
 
 For new minimum explainers (with sections 1-5 or fewer):
-* iterate promptly with PRs adding sections up through 6 within 2-4 weeks of publishing your minimum explainer
-* create a PR with at least one additional section and request a repo owner review/approval and merge accordingly
-* start drafting additional PRs for sections up through 10
+* iterate promptly with one or more PRs to add sections up through 6 within 2-4 weeks of publishing your minimum explainer
 
 When ready to solicit external feedback on an explainer:
 * create a new repo for the explainer (same short-name if possible), 
