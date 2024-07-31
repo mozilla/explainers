@@ -59,6 +59,10 @@ Expand your explainer with the following sections, in order:
 This repo is for developing explainer files until ready for external feedback, 
 or archival if we decide an explainer is no longer worth pursuing.
 
+For new minimum explainers (those missing any of sections 2 through 6),
+we expect that those sections are added within 2-4 weeks of
+publishing your minimum explainer, using pull requests.
+
 When ready to solicit external feedback on an explainer:
 * create a new repo for the explainer (same short-name if possible), 
 * move the explainer file into that new repo (with history)
