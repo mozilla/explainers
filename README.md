@@ -33,7 +33,8 @@ Explainers we are no longer pursuing, have been superseded, or have been incorpo
 ## How to add an Explainer
 1. write up a minimum viable (or more) explainer
 2. get reviews and approvals from your senior standards person (ask [@tantek](https://github.com/tantek) for who) and the CTO office (ask [@martinthomson](https://github.com/martinthomson) for who)
-3. convert your draft explainer to markdown, submit a PR to add the file to this repo and link to it from Current Explainers section above
+3. convert your draft explainer to markdown
+4. submit a pull request that adds the file to this repository and links to it from the [Current Explainers](#current-explainers) section above
 
 ## Minimum viable explainer
 Start your explainer with at least:
