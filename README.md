@@ -13,6 +13,7 @@ In general we expect to focus on developing explainers that:
 ## Current Explainers
 * [Privacy-Preserving Attribution Measurement API](https://github.com/mozilla/explainers/tree/main/ppa-experiment) ([ppa-experiment issues](https://github.com/mozilla/explainers/issues?q=is%3Aissue+is%3Aopen+%5Bppa-experiment%5D))
 * [EyeDropper as &lt;input>](https://github.com/mozilla/explainers/blob/main/eyedropper-input.md)
+* [Amount](https://github.com/mozilla/explainers/blob/main/amount.md)
 * ...
 
 ## Feedback on Explainers
@@ -32,7 +33,7 @@ Explainers we are no longer pursuing, have been superseded, or have been incorpo
 ## How to add an Explainer
 1. write up a minimum viable (or more) explainer
 2. get reviews and approvals from your senior standards person (ask [@tantek](https://github.com/tantek) for who) and the CTO office (ask [@martinthomson](https://github.com/martinthomson) for who)
-3. convert your draft explainer to markdown, submit a PR to add the file to this repo and link to it from Current Explainers below
+3. convert your draft explainer to markdown, submit a PR to add the file to this repo and link to it from Current Explainers section above
 
 ## Minimum viable explainer
 Start your explainer with at least:
