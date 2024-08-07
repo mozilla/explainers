@@ -162,24 +162,16 @@ An advertiser (“advertiser.example”) sells hats, shoes, and gloves. They dec
 
 With two sites and four ads (one for hats, three for shoes), the advertiser decides to count conversions for each separately. They arrange to have a DAP task set up with 8 different histogram indices, with the allocation as follows:
 
-| Index | Site | Product | Ad  |
-| --- | --- | --- | --- |
-| 0   | news.example | hats | 1   |
-| --- | --- | --- | --- |
-| 1   | news.example | shoes | 1   |
-| --- | --- | --- | --- |
-| 2   | news.example | shoes | 2   |
-| --- | --- | --- | --- |
-| 3   | news.example | shoes | 3   |
-| --- | --- | --- | --- |
-| 4   | social.example | hats | 1   |
-| --- | --- | --- | --- |
-| 5   | social.example | shoes | 1   |
-| --- | --- | --- | --- |
-| 6   | social.example | shoes | 2   |
-| --- | --- | --- | --- |
-| 7   | social.example | shoes | 3   |
-| --- | --- | --- | --- |
+| Index | Site           | Product | Ad  |
+| ----- | -------------- | ------- | --- |
+| 0     | news.example   | hats    | 1   |
+| 1     | news.example   | shoes   | 1   |
+| 2     | news.example   | shoes   | 2   |
+| 3     | news.example   | shoes   | 3   |
+| 4     | social.example | hats    | 1   |
+| 5     | social.example | shoes   | 1   |
+| 6     | social.example | shoes   | 2   |
+| 7     | social.example | shoes   | 3   |
 
 We now follow the journey of a single user. This user is browsing the social network site and is shown shoe ad number 2. The site asks the browser to save an impression.
 
@@ -212,14 +204,11 @@ navigator.privateAttribution.measureConversion({
 
 The browser then considers its store of impressions for “advertiser.example”, which looks something like this:
 
-| Time | Type | Ad  | Source | Index |
-| --- | --- | --- | --- | --- |
-| 123456 | view | shoes | social.example | 6   |
-| --- | --- | --- | --- | --- |
-| 123458 | click | shoes | news.example | 3   |
-| --- | --- | --- | --- | --- |
-| 123459 | view | hats | social.example | 4   |
-| --- | --- | --- | --- | --- |
+| Time   | Type  | Ad    | Source         | Index |
+| ------ | ----- | ----- | -------------- | ----- |
+| 123456 | view  | shoes | social.example | 6     |
+| 123458 | click | shoes | news.example   | 3     |
+| 123459 | view  | hats  | social.example | 4     |
 
 The privacy budget is consulted for “advertising.example”, but as this is their first conversion report, that record does not exist.
 
