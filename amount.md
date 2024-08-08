@@ -11,4 +11,8 @@ then browsers could offer a privacy-respecting user-interface to display these a
 
 ## Methodology for approaching & evaluating solutions
 
-Per the priority of constituencies, we should first look for solutions that users can trust (like if there is an affordance to convert units, it should be 100% reliable when present) and, second, solutions that are more dependable and robust for developers. In particular, we should look for and prefer [declarative approaches](https://www.mozilla.org/en-US/about/webvision/full/#thedeclarativeweb) over imperative approaches.
+Per the priority of constituencies, we should first look for solutions that users can trust, 
+e.g. if a solution enables an affordance to convert units, it should be 100% reliable like a calculator, 
+as users will expect any unit conversions to be simple arithmetic.
+Second, we should look for solutions that are minimal work, simpler, and more dependable and robust for developers. 
+In particular, we should look for and prefer [declarative approaches](https://www.mozilla.org/en-US/about/webvision/full/#thedeclarativeweb) over imperative approaches.
