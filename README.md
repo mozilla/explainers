@@ -42,6 +42,13 @@ Start your explainer with at least:
 0. a short name (for the directory that will hold your explainer)
 1. user problem(s) to be solved with a new/improved standard, at least a one sentence description
 
+If your explainer is a counter-proposal to an existing public proposal or other explainer, 
+your minimum explainer should include enough additional sections to provide a useful contribution 
+to the existing conversation around the problem(s) being solved, and approaches already being explored.
+For example, if someone else has proposed an API to solve the problem(s) your explainer describes, 
+your minimum explainer should include at least sections 1-5 (see [below](#explainer-sections)), 
+especially existing proposal flaws, and why/how we can do better.
+
 ## Explainer sections
 Expand your explainer with the following sections, in order:
 
