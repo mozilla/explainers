@@ -46,7 +46,7 @@ Start your explainer with at least:
 Expand your explainer with the following sections, in order:
 
 2. methodology for approaching & evaluating solutions (e.g. cite & quote from the Web Vision)
-3. prior/existing features (if any) and existing proposals (if any) that attempt to solve the problem(s)
+3. prior/existing features and/or proposals (if any) that attempt to solve the problem(s)
 4. flaws or limitations in existing features/proposals that prevent solving the problem(s)
 5. motivation for this explainer, why we think we can do better than the status quo or other proposals
 6. outline of a proposed solution
