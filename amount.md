@@ -32,8 +32,15 @@ which can be used to represent numerical amounts independent of punctuation, e.g
 `<data value=1000 lang=en>1,000</data>`
 `<data value=1.5 lang=fr>1,5</data>`
 
-No known examples of such usage in the wild however.
+Both elements are used in the wild on web pages. 
+There are techniques for using the [time element to provide accessible “ago“ durations](https://shkspr.mobi/blog/2020/12/making-time-more-accessible/), 
+however there are no known examples in the wild of using data elements for numerical amounts with punctuation.
 
-Both are widely natively supported by browsers ([MDN data support](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/data#browser_compatibility), [MDN time support](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/time#browser_compatibility)).
+Both elements are also widely natively supported by browsers 
+([MDN data support](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/data#browser_compatibility), 
+[MDN time support](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/time#browser_compatibility)), 
+however without any default user-discernible effects, 
+including [in screen readers](https://twitter.com/LeonieWatson/status/1333078194925264898), 
+despite the “[First rule of ARIA use](https://www.w3.org/TR/aria-in-html/#rule1)” encouraging publishers to use native HTML semantic elements.
 
 ...
