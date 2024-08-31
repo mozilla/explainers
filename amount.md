@@ -43,4 +43,10 @@ however without any default user-discernible effects,
 including [in screen readers](https://twitter.com/LeonieWatson/status/1333078194925264898), 
 despite the “[First rule of ARIA use](https://www.w3.org/TR/aria-in-html/#rule1)” encouraging publishers to use native HTML semantic elements.
 
+The microformats community did a lot of [research into measure formats](https://microformats.org/wiki/measure) 
+for amounts with physical units in the mid-2000s, 
+culminating in an [hmeasure draft proposal](https://microformats.org/wiki/measure-brainstorming#Draft_Schema), 
+which was eventually evolved in the 2010s into an [h-measure proposal](https://microformats.org/wiki/measure-brainstorming#microformats2) 
+in modern microformats2 syntax (which itself is widely used in various blogging services, software, and plugins).
+
 ...
