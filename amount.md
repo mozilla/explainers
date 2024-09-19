@@ -49,4 +49,16 @@ culminating in an [hmeasure draft proposal](https://microformats.org/wiki/measur
 which was eventually evolved in the 2010s into an [h-measure proposal](https://microformats.org/wiki/measure-brainstorming#microformats2) 
 in modern microformats2 syntax (which itself is widely used in various blogging services, software, and plugins).
 
+In 2020 the WebWeWant community submitted a “want” (recognized as a “Judges’ Pick”) 
+for “[browsers to localize data like dates and numbers](https://webwewant.fyi/wants/59/)” 
+([GitHub discuss](https://github.com/WebWeWant/webwewant.fyi/discussions/188)). 
+
+The “want” proposed a default browser user interface enhancement of the standard HTML `<time>` element 
+and a new HTML `<amount>` element with a `units` attribute for currency or physical units. 
+In addition there were unclear proposal-by-example attributes for numeric `decimals`
+(perhaps indicating significant digits or number of optional digits after the decimal point), 
+and a boolean `non-zero-decimals` which may be an attempt to only display non-zero decimals
+(thus a `false` value meaning always display decimals, which seems to be an author-unfriendly double-negative expression). 
+Also the second `<amount>` example is missing a `value` element which we can infer from context should have been `value="2"`.
+
 ...
