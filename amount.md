@@ -49,7 +49,7 @@ culminating in an [hmeasure draft proposal](https://microformats.org/wiki/measur
 which was eventually evolved in the 2010s into an [h-measure proposal](https://microformats.org/wiki/measure-brainstorming#microformats2) 
 in modern microformats2 syntax (which itself is widely used in various blogging services, software, and plugins).
 
-In 2020 the WebWeWant community submitted a “want” (recognized as a “Judges’ Pick”) 
+In [2019](https://webwewant.fyi/events/2019-wordcamp-us/) the WebWeWant community submitted a “want” (recognized as a “Judges’ Pick”) 
 for “[browsers to localize data like dates and numbers](https://webwewant.fyi/wants/59/)” 
 ([GitHub discussion](https://github.com/WebWeWant/webwewant.fyi/discussions/188)). 
 
