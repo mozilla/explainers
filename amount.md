@@ -51,7 +51,7 @@ in modern microformats2 syntax (which itself is widely used in various blogging 
 
 In 2020 the WebWeWant community submitted a “want” (recognized as a “Judges’ Pick”) 
 for “[browsers to localize data like dates and numbers](https://webwewant.fyi/wants/59/)” 
-([GitHub discuss](https://github.com/WebWeWant/webwewant.fyi/discussions/188)). 
+([GitHub discussion](https://github.com/WebWeWant/webwewant.fyi/discussions/188)). 
 
 The “want” proposed a default browser user interface enhancement of the standard HTML `<time>` element 
 and a new HTML `<amount>` element with a `units` attribute for currency or physical units. 
