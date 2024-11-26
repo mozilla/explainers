@@ -61,4 +61,11 @@ and a boolean `non-zero-decimals` which may be an attempt to only display non-ze
 (thus a `false` value meaning always display decimals, which seems to be an author-unfriendly double-negative expression). 
 Also the second `<amount>` example is missing a `value` element which we can infer from context should have been `value="2"`.
 
+The idea for an HTML `<amount>` element with a `units` attribute overall seems promising and worth exploring, expanding, and specifying.
+
+There is also an existing early stage [measure proposal](https://github.com/tc39-transfer/proposal-measure) in TC39 that, 
+despite the imperative approach, may have some additional useful (researched) semantics to consider 
+in a proposed declarative amount solution, such as compound units and separate major and minor units.
+
+
 ...
