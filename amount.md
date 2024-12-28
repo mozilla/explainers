@@ -21,6 +21,10 @@ Out of scope:
 * currencies (for this Explainer), because their conversions are subjective and changing (not 100% reliable). We may still consider the backward compatible extensibility of any solutions, in order to enable a future Explainer to add currency support. We may also consider how solutions could treat a currency amount as a numerical amount with an unknown unit, for the purposes of converting at least the numerical portion to user preferred or locale-specific punctuation for large or decimal numbers.
 
 ## Existing features and prior proposals
+There is a broad range from implemented features to various prior and in-progress proposals that address or attempt to address some to all of the user problems noted above. 
+This section documents them, roughly clustered into well implemented existing standards features, 
+to proposals that may have some to no partial or experimental support from publishers or perhaps a single implementation.
+
 ### Existing features
 In HTML we have the `<time>` element which is useful for publishing date time information, 
 and in particular [durations](https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#valid-duration-string) 
@@ -85,11 +89,20 @@ By taking inspiration from the prior declarative features and proposals in parti
 
 ## Outline of proposed solution
 Proposal: a new HTML `<amount>` element (similar to `<data>` and `<time>`), with:
-* `value` attribute: optional numerical value, similar to the `<data>` element’s `value` attribute. Otherwise element contents are the value.
-* `units` attribute: optional physical ([SI](https://en.wikipedia.org/wiki/International_System_of_Units)) unit to express measures.
+* `value` attribute: optional numerical value, similar to the `<data>` element’s `value` attribute. Otherwise element contents are parsed for a numberical value.
+  * E.g. `<amount>42.2</amount>` or `<amount value=42.2 lang=de>42,2</amount>`
+* `unit` attribute: optional physical ([SI](https://en.wikipedia.org/wiki/International_System_of_Units)) unit to express measures.
+  Absent a `unit` attribute, the element contents are parsed for a numerical value, and the remaining portion of the element contents is parsed for an SI unit.
+  Simple compound SI units (e.g. `km/h`) are common enough in web content to also merit supporting.
   User agents may fully algorithmically transform such a unit to the user’s locale (user opt-in) or other display preferences.
-* `currency` attribute: optional currency code (([ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)) to express a monetary amount. User agents could use an online exchange service to compute rough equivalents and note the source and time dependency (temporal context) of any such conversions.
-* The presence of both `units` and `currency' attributes is an error. The user agent must ignore both attributes.
-* If neither a `units` nor `currency` attribute are present, the amount is unitless and expresses a quantity.
+  * E.g. `<amount>42.2km</amount>` or `<amount value=42.2 unit=km> lang=de>42,2km</amount>`
+* If there is no `unit` attribute, and no valid unit parsed from the element contents, the amount is unitless and expresses a quantity.
   User agents may format (user opt-in) large and/or decimal quantities in locale-specific tridigit and
   decimal separators (e.g. ',' vs '.' etc.), taking care to preserve any script observable metrics to avoid exposing locale information.
+
+### currency extension
+As an exploration, to extend the `<amount>` element to support currency, we could do so with:
+* `currency` attribute: optional currency code (([ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)) to express a monetary amount. User agents could use an online exchange service to compute rough equivalents and note the source and time dependency (temporal context) of any such conversions.
+  * e.g. `<amount currency=USD value=64000>$64,000</amount>`
+* The presence of both `units` and `currency' attributes is an error. The user agent must ignore both attributes.
+* Quantity change: If neither a unit (attribute or parsed) nor `currency` attribute are present, the amount is unitless and expresses a quantity.
