@@ -104,5 +104,5 @@ Proposal: a new HTML `<amount>` element (similar to `<data>` and `<time>`), with
 As an exploration, to extend the `<amount>` element to support currency, we could do so with:
 * `currency` attribute: optional currency code (([ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)) to express a monetary amount. User agents could use an online exchange service to compute rough equivalents and note the source and time dependency (temporal context) of any such conversions.
   * e.g. `<amount currency=USD value=64000>$64,000</amount>`
-* The presence of both `units` and `currency' attributes is an error. The user agent must ignore both attributes.
+* The presence of both `unit` and `currency` attributes is an error. The user agent must ignore both attributes.
 * Quantity change: If neither a unit (attribute or parsed) nor `currency` attribute are present, the amount is unitless and expresses a quantity.
