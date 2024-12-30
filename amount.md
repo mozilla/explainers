@@ -97,8 +97,10 @@ Proposal: a new HTML `<amount>` element (similar to `<data>` and `<time>`), with
   User agents may fully algorithmically transform such a unit to the user’s locale (user opt-in) or other display preferences.
   * E.g. `<amount>42.2km</amount>` or `<amount value=42.2 unit=km> lang=de>42,2km</amount>`
 * If there is no `unit` attribute, and no valid unit parsed from the element contents, the amount is unitless and expresses a quantity.
-  User agents may format (user opt-in) large and/or decimal quantities in locale-specific tridigit and
-  decimal separators (e.g. ',' vs '.' etc.), taking care to preserve any script observable metrics to avoid exposing locale information.
+  User agents may format (user opt-in) large and/or decimal quantities in locale-specific
+  [tridigit](https://en.wikipedia.org/wiki/Decimal_separator#Digit_grouping) and
+  [decimal separators](https://en.wikipedia.org/wiki/Decimal_separator) (e.g. ',' vs '.' etc.),
+  taking care to preserve any script observable metrics to avoid exposing locale information.
 
 ### currency extension
 As an exploration, to extend the `<amount>` element to support currency, we could do so with:
