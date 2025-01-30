@@ -55,7 +55,7 @@ If you want to request external feedback on your new explainer,
 then be sure to at least:
 * minimally write up sections 1-7
 * create a new repo for your explainer at `github.com/mozilla/SHORTNAME`
-  where `SHORTNAME` is your answer to 0. above, append `-explainer` if necessary (existing repo name collision)
+  where `SHORTNAME` is your answer to 0. above; append `-explainer` if necessary to avoid collisions with existing repositories
 * land your explainer in that repo
 * create a PR for this README linking to it in the Current Explainers section above
 
