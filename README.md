@@ -39,15 +39,25 @@ Explainers we are no longer pursuing, have been superseded, or have been incorpo
 ## Minimum viable explainer
 Start your explainer with at least:
 
-0. a short name (for the directory that will hold your explainer)
+0. a short name for the feature, which will be used for the directory/repository for your explainer; use all lowercase short names with hyphens for separators
 1. user problem(s) to be solved with a new/improved standard, at least a one sentence description
 
+### New counter-proposal
 If your explainer is a counter-proposal to an existing public explainer or group proposal, 
 your minimum explainer should include enough additional sections to provide a useful contribution 
 to the existing conversation around the problem(s) being solved, and approaches already being explored.
 For example, if someone else has proposed an API to solve the problem(s) your explainer describes, 
 your minimum explainer should include at least sections 1-5 (see [below](#explainer-sections)), 
 especially existing proposal flaws, and why/how we can do better.
+
+### Requesting feedback
+If you want to request external feedback on your new explainer, 
+then be sure to at least:
+* minimally write up sections 1-7
+* create a new repo for your explainer at `github.com/mozilla/SHORTNAME`
+  where `SHORTNAME` is your answer to 0. above; append `-explainer` if necessary to avoid collisions with existing repositories
+* land your explainer in that repo
+* create a PR for this README linking to it in the Current Explainers section above
 
 ## Explainer sections
 Expand your explainer with the following sections, in order:
