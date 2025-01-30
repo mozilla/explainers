@@ -50,7 +50,7 @@ For example, if someone else has proposed an API to solve the problem(s) your ex
 your minimum explainer should include at least sections 1-5 (see [below](#explainer-sections)), 
 especially existing proposal flaws, and why/how we can do better.
 
-### New explainer with request for feedback
+### Requesting feedback
 If you want to request external feedback on your new explainer, 
 then be sure to at least:
 * minimally write up sections 1-7
