@@ -89,7 +89,7 @@ By taking inspiration from the prior declarative features and proposals in parti
 
 ## Outline of proposed solution
 Proposal: a new HTML `<amount>` element (similar to `<data>` and `<time>`), with:
-* `value` attribute: optional numerical value, similar to the `<data>` element’s `value` attribute. Otherwise element contents are parsed for a numberical value.
+* `value` attribute: optional numerical value, similar to the `<data>` element’s `value` attribute. Otherwise element contents are parsed for a numerical value.
   * E.g. `<amount>42.2</amount>` or `<amount value=42.2 lang=de>42,2</amount>`
 * `unit` attribute: optional physical ([SI](https://en.wikipedia.org/wiki/International_System_of_Units)) unit to express measures.
   Absent a `unit` attribute, the element contents are parsed for a numerical value, and the remaining portion of the element contents is parsed for an SI unit.
