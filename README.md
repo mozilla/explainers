@@ -39,7 +39,7 @@ Explainers we are no longer pursuing, have been superseded, or have been incorpo
 ## Minimum viable explainer
 Start your explainer with at least:
 
-0. a short name — for the directory that will hold your explainer, preferably all lowercase
+0. a short name for the feature, which will be used for the directory/repository for your explainer; use all lowercase short names with hyphens for separators
 1. user problem(s) to be solved with a new/improved standard, at least a one sentence description
 
 ### New counter-proposal
