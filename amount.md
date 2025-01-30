@@ -11,9 +11,10 @@ then browsers could offer a privacy-respecting user-interface to display these a
 
 ## Methodology for approaching and evaluating solutions
 
-Per the priority of constituencies, we should first look for solutions that users can trust, 
-e.g. if a solution enables an affordance to convert units, it should be 100% reliable like a calculator, 
-as users will expect any unit conversions to be simple arithmetic.
+Per the priority of constituencies, we should first look for solutions that users can trust, in both fidelity and privacy. 
+E.g. if a solution enables an affordance to convert units, it should be 100% reliable like a calculator, 
+as users will expect any unit conversions to be simple arithmetic. 
+Ideally any such affordances could also provide 100% private conversions, in a way undetectable by the web page, like a tooltip or the way some browsers show a URL in a window footer when hovering a hyperlink.
 
 Second, we should look for solutions that are minimal work, simpler, and more dependable and robust for developers. 
 In particular, we should look for and prefer [declarative approaches](https://www.mozilla.org/en-US/about/webvision/full/#thedeclarativeweb) over imperative approaches. 
