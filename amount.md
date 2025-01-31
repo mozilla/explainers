@@ -12,9 +12,13 @@ then browsers could offer a privacy-respecting user-interface to display these a
 ## Methodology for approaching and evaluating solutions
 
 Per the priority of constituencies, we should first look for solutions that users can trust, in both fidelity and privacy. 
-E.g. if a solution enables an affordance to convert units, it should be 100% reliable like a calculator, 
-as users will expect any unit conversions to be simple arithmetic. 
-Ideally any such affordances could also provide 100% private conversions, in a way undetectable by the web page, like a tooltip or the way some browsers show a URL in a window footer when hovering a hyperlink.
+
+1. Any unit conversions need to be consistent and reliable, like a calculator, as users will expect simple arithmetic, 
+   perhaps allowing only negligible rounding errors. 
+   For example, that eliminates currency conversion, which is variable and not tolerant of rounding errors.
+2. Conversions that might occur due to localization preferences, such as conversions from feet to meters,
+   need to not be observable to sites that are not already aware of the preference.
+   For example, a conversion to preferred units might be implemented through the use of tooltips or another purely-browser controlled interface.
 
 Second, we should look for solutions that are minimal work, simpler, and more dependable and robust for developers. 
 In particular, we should look for and prefer [declarative approaches](https://www.mozilla.org/en-US/about/webvision/full/#thedeclarativeweb) over imperative approaches. 
