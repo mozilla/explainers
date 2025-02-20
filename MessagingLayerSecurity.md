@@ -1,7 +1,7 @@
 # Explainer: Prototype Web API for Messaging Layer Security (MLS)
 
-[Benjamin Beurdouche](mailto:bbeurdouche@mozilla.com)
-Last updated: November 29, 2024
+[Benjamin Beurdouche](mailto:beurdouche@mozilla.com)
+Last updated: February 20, 2025
 
 ### Overview
 
@@ -87,9 +87,13 @@ application level by defining coherent MLS group and client configurations, the
 MLS layer messages will be interoperable and applications will be able to build
 a shared group.
 
-### How do I enable the experiment  ?
+### How do I enable the experiment ?
 
-**Navigate to \`about:config\` and set \`security.mls.enabled\` to \`true\`.**
+If you are not already part of an Origin Trial, navigate to **\`about:config\`**.
+
+For Firefox 135: set **\`security.mls.enabled\`** to **\`true\`**.
+
+For Firefox 136+: set **\`dom.origin-trials.mls.state\`** to **\`1\`**.
 
 ### Terminology
 
@@ -168,6 +172,9 @@ let ctx1 = await gb.send("Hello Alice!")
 let ga = await mls.groupJoin(a, co1.welcome)
 let pt1 = await ga.receive(ctx1)
 ```
+
+Note that, to ease testing, the code above runs both participants
+but each browser will typically run one participant.
 
 ### Prototype WebIDL Definition
 
