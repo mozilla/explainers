@@ -84,7 +84,7 @@ in a proposed declarative amount solution, such as compound units and separate m
 * The `h-measure` proposed microformat while cleverly re-uses `<data>` elements, requires multiple (3-4) elements to represent a single numerical amount.
   Multiple elements for a single amount are a substantially lengthier syntax,
   both suboptimal for developer ergonomics and easier to get wrong or break in maintenance.
-* The WebWeWant `<amount>` proposal is both incomplete, and yet seems to also have unnecessary features like the boolean `non-zero-decimals.
+* The WebWeWant `<amount>` proposal is both incomplete, and yet seems to also have unnecessary features like the boolean `non-zero-decimals`.
 * The TC39 measure proposal is both a semantic layer violation (meaning in the web platform should be encoded in markup, not script),
   and also creates even worse developer ergonomics (wordier and more fragile imperative syntax) than the `h-measure` microformat.
 
