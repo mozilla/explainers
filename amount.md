@@ -74,7 +74,17 @@ Also the second `<amount>` example is missing a `value` element which we can inf
 
 The idea for an HTML `<amount>` element with a `units` attribute overall seems promising and worth exploring, expanding, and specifying.
 
-There is also an existing early stage [measure proposal](https://github.com/tc39-transfer/proposal-measure) in TC39 that, 
+In 2022, a web developer [proposed](https://github.com/openui/open-ui/issues/499) an 
+[m or measure element](https://github.com/futekov/measure-element), with `unit` and `value` attributes, 
+and included research and analysis of the aformentioned microformats measure efforts, 
+as well as existing HTML elements noted above, and the Wikipedia `{{convert}}` template as prior art. 
+The proposal also includes a way for the author to express their confidence in the "convertiblilty" of 
+any particular measure with a `convert` attribute that takes values `never|auto|eager`. 
+As a result of this proposal, the Open UI Community Group 
+[resolved to incubate a solution to semantic measurements](https://github.com/openui/open-ui/issues/499#issuecomment-1084962904) without committing to any particular existing solution or proposal, 
+thus indicating a likely receptive candidate incubation destination for this explainer.
+
+There is a late 2024 [measure proposal](https://github.com/tc39-transfer/proposal-measure) in TC39 that, 
 despite the imperative approach, may have some additional useful (researched) semantics to consider 
 in a proposed declarative amount solution, such as compound units and separate major and minor units.
 
@@ -85,8 +95,16 @@ in a proposed declarative amount solution, such as compound units and separate m
   Multiple elements for a single amount are a substantially lengthier syntax,
   both suboptimal for developer ergonomics and easier to get wrong or break in maintenance.
 * The WebWeWant `<amount>` proposal is both incomplete, and yet seems to also have unnecessary features like the boolean `non-zero-decimals`.
-* The TC39 measure proposal is both a semantic layer violation (meaning in the web platform should be encoded in markup, not script),
-  and also creates even worse developer ergonomics (wordier and more fragile imperative syntax) than the `h-measure` microformat.
+* The `<m>` or measure element proposal has many good attributes (in both senses),
+  and may present an opportunity for collaboration. The only obvious nit is in the name,
+  as a “measure” implies something was measured, which we cannot (do not want to) assume.
+  Whereas an “amount“ could be a measure or an abstract quantity or part of a request or rule,
+  such as legislated speed limits, which exist regardless and independent of any particular measurement.
+* The TC39 measure proposal is both a semantic layer violation
+  (meaning in the web platform should be encoded in markup, not script), 
+  and also creates even worse developer ergonomics (wordier and more fragile imperative syntax)
+  than the `h-measure` microformat.
+  Like the measure element proposal, the name is a mismatch for some use-cases.
 
 ## Motivation for this explainer
 By choosing the best from prior proposals, we can create a simpler, more ergonomic and robust solution for web developers that starts with solving the most common use-cases, with room for extensions to solve more use-cases as necessary.
