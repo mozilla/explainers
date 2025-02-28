@@ -98,7 +98,8 @@ in a proposed declarative amount solution, such as compound units and separate m
 * The `<m>` or measure element proposal has many good attributes (in both senses),
   and may present an opportunity for collaboration. The only obvious nit is in the name,
   as a “measure” implies something was measured, which we cannot (do not want to) assume.
-  Whereas an “amount“ could be a measure or an abstract quantity or part of a request or rule,
+  We want to enable amounts of any type and don’t want to imply that a measurement was done in all potential use cases.
+  An amount could be a measure or an abstract quantity or part of a request or rule,
   such as legislated speed limits, which exist regardless and independent of any particular measurement.
 * The TC39 measure proposal is both a semantic layer violation
   (meaning in the web platform should be encoded in markup, not script), 
