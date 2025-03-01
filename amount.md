@@ -101,11 +101,14 @@ in a proposed declarative amount solution, such as compound units and separate m
   We want to enable amounts of any type and don’t want to imply that a measurement was done in all potential use cases.
   An amount could be a measure or an abstract quantity or part of a request or rule,
   such as legislated speed limits, which exist regardless and independent of any particular measurement.
-* The TC39 measure proposal is both a semantic layer violation
-  (meaning in the web platform should be encoded in markup, not script), 
-  and also creates even worse developer ergonomics (wordier and more fragile imperative syntax)
-  than the `h-measure` microformat.
-  Like the measure element proposal, the name is a mismatch for some use-cases.
+* The TC39 measure proposal defines imperative (scripting) features,
+  while we prefer to define a declarative mechanism (as noted in the Methodology section above),
+  that can be captured in markup.
+  In particular, the expression of semantics (meaning) in the web platform
+  should be encoded in markup, without depending on script to function.
+  A script-only proposal would also create worse developer ergonomics (wordier and more fragile imperative syntax)
+  than the existing `h-measure` microformat.
+  Additionally, like the measure element proposal, the term "measure" implies a narrower meaning than potential use-cases.
 
 ## Motivation for this explainer
 By choosing the best from prior proposals, we can create a simpler, more ergonomic and robust solution for web developers that starts with solving the most common use-cases, with room for extensions to solve more use-cases as necessary.
