@@ -14,6 +14,7 @@ In general we expect to focus on developing explainers that:
 * [Privacy-Preserving Attribution Measurement API](https://github.com/mozilla/explainers/tree/main/ppa-experiment) ([ppa-experiment issues](https://github.com/mozilla/explainers/issues?q=is%3Aissue+is%3Aopen+%5Bppa-experiment%5D))
 * [EyeDropper as &lt;input>](https://github.com/mozilla/explainers/blob/main/eyedropper-input.md)
 * [Amount](https://github.com/mozilla/explainers/blob/main/amount.md)
+* [Translation API](translation.md)
 * ...
 
 ## Feedback on Explainers
