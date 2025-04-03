@@ -17,9 +17,7 @@ We will prefer solutions that are more user-privacy respecting, like minimizing 
 ### Out of scope: 
 
 1. Exposing API to choose other third party translation services. That can be done from the browser side if needed.
-
 2. Providing rich information about source text, e.g. providing dictionary definitions.
-
 3. Non-text translation, deferred for now.
 
 ## Prior/existing features
