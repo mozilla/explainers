@@ -42,11 +42,11 @@ to hundreds of thousands of participants.
 The MLS API provides applications with two main capabilities:
 
 * Group management: applications can manage the participation of different
-* entities, including the current browser, in groups.
+  entities, including the current browser, in groups.
 
 * Secure messaging: once
-* created, a group generates a shared secret that can be used to provide
-* end-to-end protected messaging with group participants.
+  created, a group generates a shared secret that can be used to provide
+  end-to-end protected messaging with group participants.
 
  This explainer outlines the goals, design, and potential use cases of the API.
 
