@@ -1,7 +1,7 @@
 # Mozilla Explainers
 
-This repo is for the development of explainers from Mozilla contributors. 
-Mozilla Explainers can start with as little as a sentence summarizing a user-relevant problem 
+This repo is for the development of explainers from Mozilla contributors.
+Mozilla Explainers can start with as little as a sentence summarizing a user-relevant problem
 and how a new technology could help solve it.
 The [W3C TAG Explainer](https://tag.w3.org/explainers/) provides a basic outline, examples, and tips for developing explainers.
 
@@ -15,6 +15,7 @@ In general we expect to focus on developing explainers that:
 * [EyeDropper as &lt;input>](https://github.com/mozilla/explainers/blob/main/eyedropper-input.md)
 * [Amount](https://github.com/mozilla/explainers/blob/main/amount.md)
 * [Translation API](translation.md)
+* [Standard Measures with U.S. English](standard-measures-en-us.md)
 * ...
 
 ## Feedback on Explainers
