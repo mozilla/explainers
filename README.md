@@ -11,7 +11,6 @@ In general we expect to focus on developing explainers that:
 * or a counterproposal that is more aligned with the Web Vision than existing technologies or proposals
 
 ## Current Explainers
-* [Privacy-Preserving Attribution Measurement API](https://github.com/mozilla/explainers/tree/main/ppa-experiment) ([ppa-experiment issues](https://github.com/mozilla/explainers/issues?q=is%3Aissue+is%3Aopen+%5Bppa-experiment%5D))
 * [EyeDropper as &lt;input>](https://github.com/mozilla/explainers/blob/main/eyedropper-input.md)
 * [Amount](https://github.com/mozilla/explainers/blob/main/amount.md)
 * [Translation API](translation.md)
@@ -26,7 +25,8 @@ Exception: minor non-substantive or typographical changes may be submitted as PR
 
 ## Migrated Explainers
 Explainers migrated to an incubation group or standards working group.
-* none currently.
+
+* [Privacy-Preserving Attribution Measurement API](https://github.com/mozilla/explainers/tree/main/archive/ppa-experiment), moved to PATWG as [Privacy-Preserving Attribution: Level 1](https://w3c.github.io/ppa/)
 
 ## Archived Explainers
 Explainers we are no longer pursuing, have been superseded, or have been incorporated into another explainer.
