@@ -90,10 +90,11 @@ When ready to solicit external feedback on an explainer:
 * move the explainer file into that new repo (with history)
 * add a link to the new repo in the Current Explainers section
 
-Alternatively, archive an explainer file if:
+Please [archive](https://github.com/mozilla/explainers/tree/main/archive) an explainer if:
 * we decide the problem isn’t worth solving, or is better solved some other way, and document why in the explainer
 * we write a new explainer with a different problem framing that supersedes the explainer, and link from it to the new explainer
 * an explainer by another organization incorporates our explainer, and we link from it to the external explainer
+* the explainer has been incorporated into an incubation or standardization destination 
 
 ## Explainer repo progress
 Iterate on an explainer repo, improving the explainer 
@@ -106,7 +107,8 @@ Iterate by:
 * working with others to broaden interest
 
 When there is consensus on an incubation or standardization destination for the explainer, 
-follow the destination’s process for migrating into it.
+follow the destination’s process for migration or incorporation, 
+and move the explainer’s file(s) remaining in this repo to the [archive folder](https://github.com/mozilla/explainers/tree/main/archive).
 
 ## References
 Useful reading before/while writing an Explainer:
