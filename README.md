@@ -24,7 +24,7 @@ If you see something in a Mozilla Explainer that you want to suggest changing or
 Exception: minor non-substantive or typographical changes may be submitted as PRs.
 
 ## Migrated Explainers
-Explainers migrated to an incubation group or standards working group.
+Explainers migrated or incorporated into an incubation group or standards working group.
 
 * [Privacy-Preserving Attribution Measurement API](https://github.com/mozilla/explainers/tree/main/archive/ppa-experiment), moved to PATWG as [Privacy-Preserving Attribution: Level 1](https://w3c.github.io/ppa/)
 
@@ -108,7 +108,7 @@ Iterate by:
 
 When there is consensus on an incubation or standardization destination for the explainer, 
 follow the destination’s process for migration or incorporation, 
-and move the explainer’s file(s) remaining in this repo to the [archive folder](https://github.com/mozilla/explainers/tree/main/archive).
+and move any remaining file or folder from the explainer to the [archive folder](https://github.com/mozilla/explainers/tree/main/archive).
 
 ## References
 Useful reading before/while writing an Explainer:
