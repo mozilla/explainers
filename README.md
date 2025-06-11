@@ -77,7 +77,7 @@ Expand your explainer with the following sections, in order:
  * an incubation destination (e.g. WICG, WHATWG stage 0, or TC39 stage 0),
  * or a standards working group, e.g. CSS WG (which incubates internally) or a WHATWG work stream if applicable
 
-## Explainer file progress
+## Iterating and soliciting feedback
 This repo is for developing explainer files until ready for external feedback, 
 or archival if we decide an explainer is no longer worth pursuing.
 
@@ -90,6 +90,7 @@ When ready to solicit external feedback on an explainer:
 * move the explainer file into that new repo (with history)
 * add a link to the new repo in the Current Explainers section
 
+## Abandoning or replacing or migrating an explainer
 Please [archive](https://github.com/mozilla/explainers/tree/main/archive) an explainer if:
 * we decide the problem isn’t worth solving, or is better solved some other way, and document why in the explainer
 * we write a new explainer with a different problem framing that supersedes the explainer, and link from it to the new explainer
