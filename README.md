@@ -20,7 +20,7 @@ In general we expect to focus on developing explainers that:
 ## Feedback on Explainers
 We strongly prefer external feedback only on explainers that are in their own repo (see [Explainer file progress](#explainer-file-progress)).
 
-If you see something in a Mozilla Explainer that you want to suggest changing or fixing, please file an issue describing the problem and suggested resolution, not a pull request.  
+If you see something in a Mozilla Explainer that you want to suggest changing or fixing, please file an issue describing the problem and suggested resolution, not a pull request.
 Exception: minor non-substantive or typographical changes may be submitted as PRs.
 
 ## Migrated Explainers
@@ -45,15 +45,15 @@ Start your explainer with at least:
 1. user problem(s) to be solved (with a new standard), at least a one sentence description. Only the problem description, no proposed solution.
 
 ### New counter-proposal
-If your explainer is a counter-proposal to an existing public explainer or group proposal, 
-your minimum explainer should include enough additional sections to provide a useful contribution 
+If your explainer is a counter-proposal to an existing public explainer or group proposal,
+your minimum explainer should include enough additional sections to provide a useful contribution
 to the existing conversation around the problem(s) being solved, and approaches already being explored.
-For example, if someone else has proposed an API to solve the problem(s) your explainer describes, 
-your minimum explainer should include at least sections 1-5 (see [below](#explainer-sections)), 
+For example, if someone else has proposed an API to solve the problem(s) your explainer describes,
+your minimum explainer should include at least sections 1-5 (see [below](#explainer-sections)),
 especially existing proposal flaws, and why/how we can do better.
 
 ### Requesting feedback
-If you want to request external feedback on your new explainer, 
+If you want to request external feedback on your new explainer,
 then be sure to at least:
 * minimally write up sections 1-7
 * create a new repo for your explainer at `github.com/mozilla/SHORTNAME`
@@ -78,7 +78,7 @@ Expand your explainer with the following sections, in order:
  * or a standards working group, e.g. CSS WG (which incubates internally) or a WHATWG work stream if applicable
 
 ## Iterating and soliciting feedback
-This repo is for developing explainer files until ready for external feedback, 
+This repo is for developing explainer files until ready for external feedback,
 or archival if we decide an explainer is no longer worth pursuing.
 
 For new minimum explainers (those missing any of sections 2 through 6),
@@ -86,7 +86,7 @@ we expect that those sections are added within 2-4 weeks of
 publishing your minimum explainer, using pull requests.
 
 When ready to solicit external feedback on an explainer:
-* create a new repo for the explainer (same short-name if possible), 
+* create a new repo for the explainer (same short-name if possible),
 * move the explainer file into that new repo (with history)
 * add a link to the new repo in the Current Explainers section
 
@@ -95,11 +95,11 @@ Please [archive](https://github.com/mozilla/explainers/tree/main/archive) an exp
 * we decide the problem isn’t worth solving, or is better solved some other way, and document why in the explainer
 * we write a new explainer with a different problem framing that supersedes the explainer, and link from it to the new explainer
 * an explainer by another organization incorporates our explainer, and we link from it to the external explainer
-* the explainer has been incorporated into an incubation or standardization destination 
+* the explainer has been incorporated into an incubation or standardization destination
 
 ## Explainer repo progress
-Iterate on an explainer repo, improving the explainer 
-until there is broader interest to migrate it to an incubation or standardization group, 
+Iterate on an explainer repo, improving the explainer
+until there is broader interest to migrate it to an incubation or standardization group,
 or alternatively archive it for the same reasons as above.
 
 Iterate by:
@@ -107,8 +107,8 @@ Iterate by:
 * prototyping the explainer solution to test its efficacy
 * working with others to broaden interest
 
-When there is consensus on an incubation or standardization destination for the explainer, 
-follow the destination’s process for migration or incorporation, 
+When there is consensus on an incubation or standardization destination for the explainer,
+follow the destination’s process for migration or incorporation,
 and move any remaining file or folder from the explainer to the [archive folder](https://github.com/mozilla/explainers/tree/main/archive).
 
 ## References
@@ -117,6 +117,6 @@ Useful reading before/while writing an Explainer:
 * https://www.mozilla.org/en-US/about/webvision/full/ — Mozilla’s vision for the evolution of the Web
 
 Real world examples of explainers from other organizations (alphabetical by URL) — check these for similar problems being solved, opportunities to collaborate rather than create a new explainer:
-* https://github.com/explainers-by-googlers/ 
+* https://github.com/explainers-by-googlers/
 * https://github.com/MicrosoftEdge/MSEdgeExplainers/
 * https://github.com/WebKit/explainers
