@@ -44,6 +44,15 @@ Start your explainer with at least:
 0. a short name for the feature, which will be used for the directory/repository for your explainer; use all lowercase short names with hyphens for separators
 1. user problem(s) to be solved (with a new standard), at least a one sentence description. Only the problem description, no proposed solution.
 
+### TC39 Stage 0 Proposals
+If your explainer is for a [TC39 Stage 0 proposal](https://tc39.es/process-document/), do the following:
+* minimally write up sections 1-3, optionally include sections 4 and 5 as well. Remember that Stage 0 is
+  about exploring the problem space, not identifying a particular solution.
+* external feedback is not necessary (it's a normal part of asking for Stage 1 at TC39), but do get
+  internal reviews and feedback.
+* once the proposal reaches Stage 1, it should be archived as described below. Further development
+  will continue under the TC39 process.
+
 ### New counter-proposal
 If your explainer is a counter-proposal to an existing public explainer or group proposal,
 your minimum explainer should include enough additional sections to provide a useful contribution
