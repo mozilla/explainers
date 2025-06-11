@@ -42,7 +42,7 @@ Explainers we are no longer pursuing, have been superseded, or have been incorpo
 Start your explainer with at least:
 
 0. a short name for the feature, which will be used for the directory/repository for your explainer; use all lowercase short names with hyphens for separators
-1. user problem(s) to be solved (with a new standard), at least a one sentence description. Only the problem description, no proposal.
+1. user problem(s) to be solved (with a new standard), at least a one sentence description. Only the problem description, no proposed solution.
 
 ### New counter-proposal
 If your explainer is a counter-proposal to an existing public explainer or group proposal, 
