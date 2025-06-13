@@ -56,7 +56,7 @@ If your explainer is for a [TC39 Stage 0 proposal](https://tc39.es/process-docum
   Further development will continue under the TC39 process.
 
 ### New counter-proposal
-If your explainer is a counter-proposal to an existing public explainer or group proposal,
+If your explainer is a counter-proposal to an existing public explainer or group proposal, 
 your minimum explainer should include enough additional sections to provide a useful contribution
 to the existing conversation around the problem(s) being solved, and approaches already being explored.
 For example, if someone else has proposed an API to solve the problem(s) your explainer describes,
