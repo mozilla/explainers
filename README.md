@@ -109,7 +109,7 @@ Please [archive](https://github.com/mozilla/explainers/tree/main/archive) an exp
 * the explainer has been incorporated into an incubation or standardization destination 
 
 ## Explainer repo progress
-Iterate on an explainer repo, improving the explainer
+Iterate on an explainer repo, improving the explainer 
 until there is broader interest to migrate it to an incubation or standardization group,
 or alternatively archive it for the same reasons as above.
 
