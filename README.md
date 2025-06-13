@@ -97,7 +97,7 @@ we expect that those sections are added within 2-4 weeks of
 publishing your minimum explainer, using pull requests.
 
 When ready to solicit external feedback on an explainer:
-* create a new repo for the explainer (same short-name if possible),
+* create a new repo for the explainer (same short-name if possible), 
 * move the explainer file into that new repo (with history)
 * add a link to the new repo in the Current Explainers section
 
