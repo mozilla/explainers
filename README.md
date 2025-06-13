@@ -59,7 +59,7 @@ If your explainer is for a [TC39 Stage 0 proposal](https://tc39.es/process-docum
 If your explainer is a counter-proposal to an existing public explainer or group proposal, 
 your minimum explainer should include enough additional sections to provide a useful contribution 
 to the existing conversation around the problem(s) being solved, and approaches already being explored.
-For example, if someone else has proposed an API to solve the problem(s) your explainer describes,
+For example, if someone else has proposed an API to solve the problem(s) your explainer describes, 
 your minimum explainer should include at least sections 1-5 (see [below](#explainer-sections)),
 especially existing proposal flaws, and why/how we can do better.
 
