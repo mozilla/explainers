@@ -106,7 +106,7 @@ Please [archive](https://github.com/mozilla/explainers/tree/main/archive) an exp
 * we decide the problem isn’t worth solving, or is better solved some other way, and document why in the explainer
 * we write a new explainer with a different problem framing that supersedes the explainer, and link from it to the new explainer
 * an explainer by another organization incorporates our explainer, and we link from it to the external explainer
-* the explainer has been incorporated into an incubation or standardization destination
+* the explainer has been incorporated into an incubation or standardization destination 
 
 ## Explainer repo progress
 Iterate on an explainer repo, improving the explainer
