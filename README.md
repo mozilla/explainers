@@ -110,7 +110,7 @@ Please [archive](https://github.com/mozilla/explainers/tree/main/archive) an exp
 
 ## Explainer repo progress
 Iterate on an explainer repo, improving the explainer 
-until there is broader interest to migrate it to an incubation or standardization group,
+until there is broader interest to migrate it to an incubation or standardization group, 
 or alternatively archive it for the same reasons as above.
 
 Iterate by:
