@@ -64,7 +64,7 @@ your minimum explainer should include at least sections 1-5 (see [below](#explai
 especially existing proposal flaws, and why/how we can do better.
 
 ### Requesting feedback
-If you want to request external feedback on your new explainer,
+If you want to request external feedback on your new explainer, 
 then be sure to at least:
 * minimally write up sections 1-7
 * create a new repo for your explainer at `github.com/mozilla/SHORTNAME`
