@@ -89,7 +89,7 @@ Expand your explainer with the following sections, in order:
  * or a standards working group, e.g. CSS WG (which incubates internally) or a WHATWG work stream if applicable
 
 ## Iterating and soliciting feedback
-This repo is for developing explainer files until ready for external feedback,
+This repo is for developing explainer files until ready for external feedback, 
 or archival if we decide an explainer is no longer worth pursuing.
 
 For new minimum explainers (those missing any of sections 2 through 6),
