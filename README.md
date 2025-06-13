@@ -52,8 +52,8 @@ If your explainer is for a [TC39 Stage 0 proposal](https://tc39.es/process-docum
   repo from the start, and add a link to it from the `Current Explainers` section above.
 * external feedback is not necessary (it's a normal part of asking for Stage 1 at TC39), but do get
   internal reviews and feedback.
-* once the proposal reaches Stage 1, it should be archived as described below. Further development
-  will continue under the TC39 process.
+* once the proposal reaches Stage 1, any explainer for it in this repo should be archived as described below.
+  Further development will continue under the TC39 process.
 
 ### New counter-proposal
 If your explainer is a counter-proposal to an existing public explainer or group proposal,
