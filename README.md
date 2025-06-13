@@ -128,6 +128,6 @@ Useful reading before/while writing an Explainer:
 * https://www.mozilla.org/en-US/about/webvision/full/ — Mozilla’s vision for the evolution of the Web
 
 Real world examples of explainers from other organizations (alphabetical by URL) — check these for similar problems being solved, opportunities to collaborate rather than create a new explainer:
-* https://github.com/explainers-by-googlers/
+* https://github.com/explainers-by-googlers/ 
 * https://github.com/MicrosoftEdge/MSEdgeExplainers/
 * https://github.com/WebKit/explainers
