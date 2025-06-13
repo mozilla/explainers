@@ -20,7 +20,7 @@ In general we expect to focus on developing explainers that:
 ## Feedback on Explainers
 We strongly prefer external feedback only on explainers that are in their own repo (see [Explainer file progress](#explainer-file-progress)).
 
-If you see something in a Mozilla Explainer that you want to suggest changing or fixing, please file an issue describing the problem and suggested resolution, not a pull request.
+If you see something in a Mozilla Explainer that you want to suggest changing or fixing, please file an issue describing the problem and suggested resolution, not a pull request.  
 Exception: minor non-substantive or typographical changes may be submitted as PRs.
 
 ## Migrated Explainers
