@@ -119,7 +119,7 @@ Iterate by:
 * working with others to broaden interest
 
 When there is consensus on an incubation or standardization destination for the explainer, 
-follow the destination’s process for migration or incorporation,
+follow the destination’s process for migration or incorporation, 
 and move any remaining file or folder from the explainer to the [archive folder](https://github.com/mozilla/explainers/tree/main/archive).
 
 ## References
