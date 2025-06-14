@@ -91,11 +91,11 @@ When ready to solicit external feedback on an explainer:
 * add a link to the new repo in the Current Explainers section
 
 ## Abandoning or replacing or migrating an explainer
-Please [archive](https://github.com/mozilla/explainers/tree/main/archive) an explainer if:
+Please [archive](https://github.com/mozilla/explainers/tree/main/archive) an explainer when any one of these occurs:
+* it’s incorporated into an incubation (e.g. W3C CG) or standardization destination (e.g. W3C WG, or Stage 1 in TC39 or WHATWG)
 * we decide the problem isn’t worth solving, or is better solved some other way, and document why in the explainer
 * we write a new explainer with a different problem framing that supersedes the explainer, and link from it to the new explainer
-* an explainer by another organization incorporates our explainer, and we link from it to the external explainer
-* the explainer has been incorporated into an incubation or standardization destination 
+* an explainer by another organization incorporates our explainer, and we link from ours to the external explainer
 
 ## Explainer repo progress
 Iterate on an explainer repo, improving the explainer 
