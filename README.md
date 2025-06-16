@@ -97,6 +97,8 @@ Please [archive](https://github.com/mozilla/explainers/tree/main/archive) an exp
 * we write a new explainer with a different problem framing that supersedes the explainer, and link from it to the new explainer
 * an explainer by another organization incorporates our explainer, and we link from ours to the external explainer
 
+Please add a link to the archived explainer to point to the work that replaces it, or to briefly document why it is abandoned.
+
 ## Explainer repo progress
 Iterate on an explainer repo, improving the explainer 
 until there is broader interest to migrate it to an incubation or standardization group, 
