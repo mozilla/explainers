@@ -46,7 +46,7 @@ Start your explainer with at least:
 
 ### TC39 Stage 0 Proposals
 If your explainer is for a [TC39 Stage 0 proposal](https://tc39.es/process-document/), do the following:
-* minimally write up sections 1-3, optionally include sections 4 and 5 as well. Remember that Stage 0 is
+* write up sections 1-3, optionally add sections 4-5. Do not add section 6+. Stage 0 is
   about exploring the problem space, not identifying a particular solution.
 * because a proposal repo is required to present to TC39, it makes sense to have the explainer in a separate
   repo from the start, and add a link to it from the `Current Explainers` section above.
