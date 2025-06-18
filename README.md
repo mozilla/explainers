@@ -60,7 +60,7 @@ especially existing proposal flaws, and why/how we can do better.
 ### Requesting feedback
 If you want to request external feedback on your new explainer, 
 then be sure to at least:
-* minimally write up sections 1-7
+* minimally write up sections 1-6
 * create a new repo for your explainer at `github.com/mozilla/SHORTNAME`
   where `SHORTNAME` is your answer to 0. above; append `-explainer` if necessary to avoid collisions with existing repositories
 * land your explainer in that repo
@@ -86,7 +86,7 @@ Expand your explainer with the following sections, in order:
 This repo is for developing explainer files until ready for external feedback, 
 or archival if we decide an explainer is no longer worth pursuing.
 
-For new minimum explainers (those missing any of sections 2 through 6),
+For new minimum explainers (those missing any of sections 2 through 6, or 2 through 3 for TC39 Stage 0 proposals),
 we expect that those sections are added within 2-4 weeks of
 publishing your minimum explainer, using pull requests.
 
