@@ -38,36 +38,18 @@ Explainers we are no longer pursuing, have been superseded, or have been incorpo
 3. convert your draft explainer to markdown
 4. submit a pull request that adds the file to this repository and links to it from the [Current Explainers](#current-explainers) section above
 
+If you want to immediately request external feedback, instead of step (4), follow the additional instructions in the "Requesting feedback" section below to create a new repo rather than adding a file to this repository.
+
 ## Minimum viable explainer
 Start your explainer with at least:
 
 0. a short name for the feature, which will be used for the directory/repository for your explainer; use all lowercase short names with hyphens for separators
 1. user problem(s) to be solved (with a new standard), at least a one sentence description. Only the problem description, no proposed solution.
 
-### TC39 Stage 0 Proposals
-If your explainer is for a [TC39 Stage 0 proposal](https://tc39.es/process-document/), do the following:
-* write up sections 1-3, optionally add sections 4-5. Do not add section 6+. Stage 0 is
-  for exploring the problem space and shape of possible approaches, not identifying a particular solution.
-
-### New counter-proposal
-If your explainer is a counter-proposal to an existing public explainer or group proposal, 
-your minimum explainer should include enough additional sections to provide a useful contribution 
-to the existing conversation around the problem(s) being solved, and approaches already being explored.
-For example, if someone else has proposed an API to solve the problem(s) your explainer describes, 
-your minimum explainer should include at least sections 1-5 (see [below](#explainer-sections)), 
-especially existing proposal flaws, and why/how we can do better.
-
-### Requesting feedback
-If you want to request external feedback on your new explainer, 
-then be sure to at least:
-* minimally write up sections 1-7
-* create a new repo for your explainer at `github.com/mozilla/SHORTNAME`
-  where `SHORTNAME` is your answer to 0. above; append `-explainer` if necessary to avoid collisions with existing repositories
-* land your explainer in that repo
-* create a PR for this README linking to it in the Current Explainers section above
+Note: minimum counter-proposals and TC39 Stage 0 Proposals require additional sections, details in sections below.
 
 ## Explainer sections
-Expand your explainer with the following sections, in order:
+Then iterate and expand your explainer with the following sections, in order.
 
 2. methodology for approaching & evaluating solutions (e.g. cite & quote from the Web Vision)
 3. prior/existing features and/or proposals (if any) that attempt to solve the problem(s)
@@ -82,16 +64,35 @@ Expand your explainer with the following sections, in order:
  * an incubation destination (e.g. WICG, WHATWG stage 0, or TC39 stage 0),
  * or a standards working group, e.g. CSS WG (which incubates internally) or a WHATWG work stream if applicable
 
+## New counter-proposal
+If your explainer is intended to be a counter-proposal to an existing public explainer or group proposal, 
+your explainer should include enough additional sections to provide a useful contribution 
+to the existing conversation around the problem(s) being solved, and approaches already being explored. 
+For example, if someone else has proposed an API to solve the problem(s) your explainer describes, 
+your minimum explainer should include at least sections 1-5, 
+especially existing proposal flaws, and why/how we can do better.
+
+## TC39 Stage 0 Proposals
+An explainer for [TC39 Stage 0 proposal](https://tc39.es/process-document/) in addition:
+* must complete sections 1-3
+* may add sections 4-5
+* must not add section(s) 6+. Stage 0 proposals are not for identifying a particular solution.
+
 ## Iterating and soliciting feedback
 This repo is for developing explainer files until ready for external feedback, 
 or archival if we decide an explainer is no longer worth pursuing.
 
+### Timely iteration
 For new minimum explainers (those missing any of sections 2 through 6),
 we expect that those sections are added within 2-4 weeks of
 publishing your minimum explainer, using pull requests.
 
+### Requesting feedback
 When ready to solicit external feedback on an explainer:
-* create a new repo for the explainer (same short-name if possible), 
+* minimally write up at least sections 1-7. Exception: TC39 Stage 0 proposals may stop at section 3.
+* create a new repo for your explainer at `github.com/mozilla/SHORTNAME`
+  where `SHORTNAME` is the short name you came up with in step 0 for a minimum explainer.
+  Append `-explainer` if necessary to avoid a name collision with an existing repository
 * move the explainer file into that new repo (with history)
 * add a link to the new repo in the Current Explainers section
 
