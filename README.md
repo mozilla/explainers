@@ -89,7 +89,7 @@ publishing your minimum explainer, using pull requests.
 
 ### Requesting feedback
 When ready to solicit external feedback on an explainer:
-* minimally write up at least sections 1-7. Exception: TC39 Stage 0 proposals must stop at section 5.
+* minimally write up at least sections 1-7. Exception: TC39 Stage 0 proposals may stop at section 3.
 * create a new repo for your explainer at `github.com/mozilla/SHORTNAME`
   where `SHORTNAME` is the short name you came up with in step 0 for a minimum explainer.
   Append `-explainer` if necessary to avoid a name collision with an existing repository
