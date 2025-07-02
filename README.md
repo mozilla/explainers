@@ -86,7 +86,7 @@ or archival if we decide an explainer is no longer worth pursuing.
 For new minimal explainers, 
 we expect additional sections to be added 
 using pull requests 
-within 2-4 weeks of publishing your minimum explainer.
+within 2-4 weeks.
 In general, promptly add sections up through 6 unless its destination has different requirements (e.g. TC39).
 
 ### Requesting feedback
