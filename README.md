@@ -83,7 +83,7 @@ This repo is for developing explainer files until ready for external feedback,
 or archival if we decide an explainer is no longer worth pursuing.
 
 ### Timely iteration
-For new minimum explainers, 
+For new minimal explainers, 
 we expect additional sections to be added 
 using pull requests 
 within 2-4 weeks of publishing your minimum explainer.
