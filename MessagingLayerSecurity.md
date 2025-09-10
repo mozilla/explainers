@@ -1,7 +1,16 @@
-# Explainer: Prototype Web API for Messaging Layer Security (MLS)
+# Explainer: Web API for Messaging Layer Security (MLS)
 
-[Benjamin Beurdouche](mailto:beurdouche@mozilla.com)
-Last updated: February 20, 2025
+[Benjamin Beurdouche](mailto:beurdouche@mozilla.com), [Anna Weine](https://github.com/Frosne)
+Last updated: September 10, 2025
+
+### User problems to be solved
+<!-- Anna: If the users of MLS are messenger users who'd benefit from MLS, the users of the WebAPI are the
+companies that will develop in top of the standard -->
+
+The Messaging Layer Security (MLS) standard ([RFC 9420](https://www.rfc-editor.org/rfc/rfc9420.html)) addresses the challenges of scalable, efficient, and standardized end-to-end encryption for group messaging, while ensuring critical security properties such as forward secrecy (FS), post-compromise security (PCS) for groups with more than two participants. 
+
+The standard has already attracted significant attention, with several major <!-- References needed? --> vendors expressing interest in implementing it within their products. Providing a single, standardized, and interoperable approach would offer substantial benefits to messaging application developers as well as the organisations willing to deploy MLS-based communication facilities, enabling them to deliver native, secure messaging support on the web efficiently and reliably. Once supported across all major browsers, developers would be able to write the integration code once and have it work consistently across platforms, significantly reducing development complexity and improving reliability. <!-- Replace one reliability with something else -->
+
 
 ### Overview
 
