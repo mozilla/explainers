@@ -1,6 +1,7 @@
 # Explainer: Web API for Messaging Layer Security (MLS)
 
 [Benjamin Beurdouche](mailto:beurdouche@mozilla.com), [Anna Weine](https://github.com/Frosne)
+
 Last updated: September 10, 2025
 
 ### User problems to be solved
