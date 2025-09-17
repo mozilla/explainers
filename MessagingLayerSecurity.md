@@ -17,11 +17,11 @@ The standard has already attracted significant attention, with several major <!-
 
 All vendors require different functionalities to achieve their objectives. Prior to evaluating potential approaches, it is necessary to collect functional requirements from prospective implementers. This process enables a clear distinction between core and optional functionalities.
 
-Then, the proposed methodology for assessing potential solutions is based on the following criteria:
+Then, the proposed methodology for assessing potential solutions would be based on the following criteria:
 
 1) Completeness: Priority is given to solutions that provide comprehensive coverage of core functionalities, while optionally supporting additional functions.
 
-2) Simplicity: The ease of implementation and adoption of the solution.
+2) Simplicity: The ease of implementation and adoption of the solution. <!-- without prior knowledge? -->
 
 3) Interoperability: The ability of the solution to function seamlessly with other potential implementations.
 
