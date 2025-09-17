@@ -13,11 +13,26 @@ The Messaging Layer Security (MLS) standard ([RFC 9420](https://www.rfc-editor.o
 The standard has already attracted significant attention, with several major <!-- References needed? --> vendors expressing interest in implementing it within their products. Providing a single, standardized, and interoperable approach would offer substantial benefits to messaging application developers as well as the organisations willing to deploy MLS-based communication facilities, enabling them to deliver native, secure messaging support on the web efficiently and reliably. Once supported across all major browsers, developers would be able to write the integration code once and have it work consistently across platforms, significantly reducing development complexity and improving reliability. <!-- Replace one reliability with something else -->
 
 
-### Overview
+### Methodology for approaching & evaluating solutions
 
-This document describes a Web API for the Messaging Layer Security (MLS)
-protocol (RFC 9420). MLS provides group key exchange for changing groups, which
-enables secure communication within those groups.
+All vendors require different functionalities to achieve their objectives. Prior to evaluating potential approaches, it is necessary to collect functional requirements from prospective implementers. This process enables a clear distinction between core and optional functionalities.
+
+Then, the proposed methodology for assessing potential solutions is based on the following criteria:
+
+1) Completeness: Priority is given to solutions that provide comprehensive coverage of core functionalities, while optionally supporting additional functions.
+
+2) Simplicity: The ease of implementation and adoption of the solution.
+
+3) Interoperability: The ability of the solution to function seamlessly with other potential implementations.
+
+
+### Prior/Existing features and/or proposals (if any) that attempt to solve the problem(s)
+
+### Flaws or limitations in existing features/proposals that prevent solving the problem(s)
+
+### Motivation for this explainer, why we think we can do better than the status quo or other proposals
+
+
 
 ### Problem statement
 
@@ -43,7 +58,7 @@ This enables applications for **secure group communication** including
 video-conferencing (SFrameTransform for WebRTC, Media Over QUIC,...), secure
 messaging (RCS, MIMI), encrypted cloud storage, and more.
 
-### Proposal
+### Outline of a proposed solution
 
 Messaging Layer Security (MLS) (RFC 9420) provides convenient and secure
 ***Continuous Group Key Agreement (CGKA) for dynamic groups***, ranging from one
