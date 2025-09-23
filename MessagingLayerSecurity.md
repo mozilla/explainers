@@ -56,19 +56,46 @@ Our goal is to provide a simplified MLS API for Web applications.
 
 This includes basic functions for group management, such as adding and removing members. For groups, both secure messaging using the internal MLS key schedule and exporting of keying material for more advanced applications is possible.
 
-### Terminology
+The key notion of any messaging protocol is a client. Client is an agent that uses this protocol to establish shared cryptographic state with other clients. The client does not have to be a part of a group yet. 
 
-A few key concepts of the MLS protocol that are necessary to understand the API.
+Each client could be seen as a public indentity ("Alice", for example), a public encryption key, and a public signature key. Client credentials is a way to prove that a current member owns a specific identity (by proving the owning of the public key). The client identifier and public key -- along with any external credentials -- are often bundled into what is called a key package that is used to add clients to groups.
 
-**Identities and Credentials**
 
-The client is a participant in the protocol which is owned by users. Each
-client, whether it is part of a group or not, has a unique identity or client
-identifier which is a handle to a signature keypair. Each client can be
-associated with a credential which is a way to reflect additional information
-related to the identity.  The default API offers a facility to create
-credentials containing arbitrary strings called basic credentials but X509 or a
-verifiable credential can be generated externally and be used in the API.
+```javascript
+let mls = new MLS()
+
+// Create identity for alice
+let alice = await mls.generateIdentity()
+
+// Create credential for alice
+let alice_credential = await mls.generateCredential(alice)
+
+// Bind the credential and indentity to one key package for alice
+let alice_key_package = await mls.generateKeyPackage(alice, ac)
+
+TODO: Include some code examples of client setup here. Highlight the important attributes on the client objects.
+```
+
+Groups are collection of users. Each client included in a group is a member of the group. Each group member has access to the group's secrets. 
+
+```javascript
+// A user could create a group
+let alice_group = await mls.groupCreate(alice, alice_credential);
+
+// Access the group information such as group members: 
+let alice_group_details = await alice_group.details().members;
+
+// Invite others to the group: 
+// We will talk about commits and context (ctx) later in the explainer
+let commit_added_bob = await alice_group.add(bob_key_package);
+
+// Send a message to the group
+let ctx = await alice_group.send(message);
+
+// Remove a member from a group
+let commit_removed_bob = await alice_group.remove(bob);
+
+```
 
 **Key Package**
 
@@ -136,243 +163,6 @@ let pt1 = await ga.receive(ctx1)
 
 Note that, to ease testing, the code above runs both participants
 but each browser will typically run one participant.
-
-### Prototype WebIDL Definition
-
-```javascript
-
-//
-// Type definitions
-//
-
-// The MLSMessageType is a way to distinguished returned values.
-
-enum MLSObjectType {
-  "group-epoch",
-  "group-identifier",
-  "group-info",
-  "client-identifier",
-  "credential-basic",
-  "key-package",
-  "proposal",
-  "commit-output",
-  "commit-processed",
-  "welcome",
-  "exporter-output",
-  "exporter-label",
-  "exporter-context",
-  "application-message-ciphertext",
-  "application-message-plaintext",
-};
-
-dictionary MLSBytes {
-  required MLSObjectType type;
-  required Uint8Array content;
-};
-
-// The MLSGroupMember struct is a non-standard MLS object constructed as a way
-// to return the link between a Client Identifier and a Credential. This is
-// typically returned inside a list of members when calling the GroupMembers
-// function.
-
-dictionary MLSGroupMember {
-  required Uint8Array clientId;
-  required Uint8Array credential;
-};
-
-// The MLSGroupDetails struct is a non-standard MLS object which reflects the
-// Membership for a Group at a certain Epoch. The Application can always request
-// the membership of the current Group and store that information for future
-// purposes.
-
-dictionary MLSGroupDetails {
-  required MLSObjectType type;
-  required Uint8Array groupId;
-  required Uint8Array groupEpoch;
-  required sequence<MLSGroupMember> members;
-};
-
-// The MLSCommitOutput is a non-standard MLS object that is returned by the
-// underneath library after performing an MLS Group Operation. It contains the
-// commit (for existing members), the welcome (for eventual new members), the
-// identifier of the client that performed the operation for convenience, and
-// additional information for eventual use by advanced configuration. As of now,
-// those advanced parameters will typically be empty.
-
-dictionary MLSCommitOutput {
-  required MLSObjectType type;
-  required Uint8Array groupId;
-  required Uint8Array commit;
-  Uint8Array welcome;
-  Uint8Array groupInfo;
-  Uint8Array ratchetTree;
-  Uint8Array clientId;
-};
-
-// The MLSExporterOutput is a non-standard MLS object that contains information
-// that was used to generate an exporter value as well as the value of the exporter
-// itself.
-
-dictionary MLSExporterOutput {
-  required MLSObjectType type;
-  required Uint8Array groupId;
-  required Uint8Array groupEpoch;
-  required Uint8Array label;
-  required Uint8Array context;
-  required Uint8Array secret;
-};
-
-// The MLSReceived is a non-standard MLS protocol object which contains the type
-// of the message processed by the decryption function (MLS.receive).
-
-dictionary MLSReceived {
-  required MLSObjectType type;
-  required Uint8Array groupId;
-  Uint8Array groupEpoch;
-  Uint8Array content;
-  MLSCommitOutput commitOutput;
-};
-
-// Type aliases
-
-typedef MLSBytes MLSClientId;
-typedef MLSBytes MLSGroupId;
-typedef MLSBytes MLSCredential;
-typedef MLSBytes MLSKeyPackage;
-typedef MLSBytes MLSProposal;
-typedef (MLSBytes or Uint8Array) MLSBytesOrUint8Array;
-typedef (Uint8Array or UTF8String) Uint8ArrayOrUTF8String;
-typedef (MLSBytes or Uint8Array or UTF8String) MLSBytesOrUint8ArrayOrUTF8String;
-
-//
-// API
-//
-
-// In all these exposed functions, the principal is derived by the DOM code to
-// perform storage partitioning based on Origin+OriginSuffix.
-
-[Pref="security.mls.enabled",
-SecureContext,
-Exposed=(Window,Worker)]
-
-interface MLS {
-
-// The deleteStateForOrigin function will delete all databases for the current
-// Origin (Host+OriginSuffix).
-
-  [Throws]
-  Promise<undefined> deleteState();
-
-// The generateIdentity function will generate a signature keypair based on the
-// default ciphersuite. What is returned is a Client Identifier (the hash of the
-// public key) so that public keys are not exposed to the users. There is currently
-// no API which returns the private signature key.
-
-  [Throws]
-  Promise<MLSClientId> generateIdentity();
-
-// The generateCredentialBasic function allows to generate a single "basic" MLS
-// credential which are necessary for building KeyPackages. Other types of
-// credentials can be generated externally. (eg. this is internally a Uint8Array
-// which can internally be constructed from a string "alice")
-
-[Throws]
-  Promise<MLSCredential> generateCredential(Uint8ArrayOrString credentialContent);
-
-// The generateKeyPackage function is leveraging a Signature keypair represented
-// by a client identifier handler, as well as an credential to generate and sign
-// KeyPackages. These KeyPackages are public values that can be distributed to
-// other users and used to add clients to groups.
-
- [Throws]
-  Promise<MLSKeyPackage> generateKeyPackage(MLSBytesOrUint8Array clientId, MLSBytesOrUint8Array credential);
-
-// The groupCreate function will create a Group View for a specific group and
-// client identifier based on the identity and credential.
-
-  [Throws]
-  Promise<MLSGroupView> groupCreate(MLSBytesOrUint8Array clientId, MLSBytesOrUint8Array credential);
-
-// The groupGet function is a constructor for an MLSGroupView object
-
-  [Throws]
-  Promise<MLSGroupView?> groupGet(MLSBytesOrUint8Array groupId, MLSBytesOrUint8Array clientId);
-
-// The groupJoin function processes a Welcome message for a specific Client to
-// Join a Group.
-
-  [Throws]
-  Promise<MLSGroupView> groupJoin(MLSBytesOrUint8Array clientId, MLSBytesOrUint8Array welcome);
-};
-
-[Pref="security.mls.enabled",
-  SecureContext,
-  Exposed=(Window,Worker)]
-interface MLSGroupView {
-  // The group identifier is constant across views of the same group
-  [Throws]
-  readonly attribute Uint8Array groupId;
-  // The client identifier is what makes it a view of the group
-  [Throws]
-  readonly attribute Uint8Array clientId;
-
-  // This function will delete the state of the database for the client
-  // which is represented by this view
-  [Throws]
-  Promise<undefined> deleteState();
-
-  // Add a client to the group using a key package
-  [Throws]
-  Promise<MLSCommitOutput> add(MLSBytesOrUint8Array keyPackage);
-
-  // Propose to Add a client to the group
-  // (this generates a proposal which when received will generate the
-  // commit output)
-  [Throws]
-  Promise<MLSProposal> proposeAdd(MLSBytesOrUint8Array keyPackage);
-
-  // Remove a client from the group
-  // (For security reason self removing MUST be proposed instead!)
-  [Throws]
-  Promise<MLSCommitOutput> remove(MLSBytesOrUint8Array remClientId);
-
-  // Propose to Remove a client (possibly self) from the group
-  [Throws]
-  Promise<MLSProposal> proposeRemove(MLSBytesOrUint8Array remClientId);
-
-  // Removes all users from the group apart from the client in the view
-  // (This could be named removeAll but self, after the commit is
-  // received the caller will be alone in the group and can call
-  // delete().)
-  [Throws]
-  Promise<MLSCommitOutput> close();
-
-  // Get information about the current state of the group including
-  // identifier, epoch and current membership
-  [Throws]
-  Promise<MLSGroupInfo> details();
-
-  // Encrypt a message to the group in the current epoch
-  [Throws]
-  Promise<MLSBytes> send(MLSBytesOrUint8ArrayOrString message);
-
-  // Receive a message for the the current group and client identifiers
-  [Throws]
-  Promise<MLSReceived> receive(MLSBytesOrUint8Array message);
-
-  // When a commit is generated but lost and cannot be received, the
-  // state can still move to the new epoch instead of calling receive on
-  // the commit message because we keep the pending commit in the state
-  [Throws]
-  Promise<MLSReceived> applyPendingCommit();
-
-  // Derive a secret for an external Application
-  [Throws]
-  Promise<MLSExporterOutput> exportSecret(MLSBytesOrUint8ArrayOrString label, MLSBytesOrUint8Array context, unsigned long long length);
-
-};
-
-```
 
 ### A more advanced example…
 
@@ -499,13 +289,6 @@ honest. The formal security guarantees are the same at a scale of two
 participants and for large groups: the cryptographic properties are that \- when
 \- the members of the group are honest then during that period of time you
 benefit from great Forward Secrecy and Post-Compromise-Security properties.
-
-### Ongoing work
-
-- Alignment with other platforms such as Android
-- Web Application Integrity, Consistency and Transparency effort
-- Interaction with WebRTC \+ SFrame / MLS
-- Get feedback to be in a good shape before submitting to standardization
 
 ### Next steps
 
