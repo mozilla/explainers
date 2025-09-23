@@ -94,7 +94,7 @@ let commit_added_bob = await alice_group.add(bob_key_package);
 // Send a message to the group
 let ctx = await alice_group.send(message);
 
-// Remove a member from a group
+// Remove a member from the group
 let commit_removed_bob = await alice_group.remove(bob);
 
 ```
