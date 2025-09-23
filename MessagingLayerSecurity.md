@@ -256,43 +256,6 @@ console.log(await gd.details())
 console.log(await ge.details())
 ```
 
-### Notes and additional information
-
-**Exporting secrets for your application**
-
-While sending and receiving MLS application messages through the API is very
-convenient, applications sometimes need to generate secrets for their own
-use. These symmetric secrets can be generated via the export\_secret API
-function using a specific label and context. Generating such secrets is safe and
-does not expose anything about the internal secret state of the protocol as this
-is done through a KDF. Note that the secret is specific to a specific epoch of
-the group.
-
-**Partitioning and storage in the browser**
-
-As of now, the MLS state is stored encrypted at rest in the profile of the user,
-similar to credentials so that it can later be migrated. The key for each
-database is currently located in the same directory along the encrypted
-database.  The state is partitioned by Origin (origin+originAttributeSuffix) and
-this was checked with multiple teams, including Privacy and Storage.
-
-**Notes on deleting MLS public and secret state**
-
-The MLS state for the origin (including secrets) can be deleted by the
-application by calling the delete state function of the API from within this
-origin. The user can also clean the state using the UI to “clear all site data”
-(by clicking on the lock icon) or by calling the API via the console if they
-don’t wish to clear their cookies at the same time.
-
-**Notes on security for large groups**
-
-It is often asked why anyone would think a thousand participant group could be
-honest. The formal security guarantees are the same at a scale of two
-participants and for large groups: the cryptographic properties are that \- when
-\- the members of the group are honest then during that period of time you
-benefit from great Forward Secrecy and Post-Compromise-Security properties.
-
-
 ### Open questions
 
 The following questions fall outside the scope of the current explainer; however, we consider it valuable to initiate a discussion on them:
