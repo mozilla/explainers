@@ -292,19 +292,16 @@ participants and for large groups: the cryptographic properties are that \- when
 \- the members of the group are honest then during that period of time you
 benefit from great Forward Secrecy and Post-Compromise-Security properties.
 
-### Next steps
 
-- We will have to decide about an improved UX and UI for the long state storage,
-  and the permissions to add and clear state.
-- We expect to provide **custom proposals** and **external join** features.
-- We also will likely extend the API to take lists of users to Add and Remove to
-     reduce the number of messages to send to other participants.
-- We anticipate that there will be a need for the application and users to
-  annotate identifiers from other users in a way that cannot be modified by
-  applications (e.g. to record that a user identity has been authenticated out
-  of bound).
-- Consider and discuss the idea of migrating the management of MLS cryptographic
-  keys to the Credential Manager.
+### Open questions
+
+The following questions fall outside the scope of the current explainer; however, we consider it valuable to initiate a discussion on them:
+
+1) Group Storage Strategy: How do the applications plan to store groups? Should they be maintained per client, per origin, or using another approach?
+
+2) API and WebCrypto Integration: Are there any advantages to allowing the API to interact directly with WebCrypto?
+
+3) Performance Considerations: What performance implications should be taken into account, and what potential optimizations exist (e.g., cloning groups or adding/removing multiple users simultaneously)?
 
 
 ### Draft specification
@@ -314,18 +311,3 @@ To be udpated
 ### Incubation and/or standardization destination
 
 To be updated.
-
-###
-
-The experimental Web API for Messaging Layer Security aims to provide a robust,
-privacy-preserving solution for secure group communication on the web and the
-internet. As this is not a web-standard, the feature has to be enabled in
-about:config.
-
-In parallel of this effort, Mozilla is partnering with major actors of the
-industry to bring more guarantees to users when running security and privacy
-critical sites through Web Application integrity, consistency and transparency
-mechanisms which will help
-
-By leveraging MLS and aligning with open standards, Mozilla seeks to enhance
-user security and foster innovation within the web platform community.
