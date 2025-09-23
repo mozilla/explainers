@@ -71,7 +71,7 @@ let alice = await mls.generateIdentity()
 let alice_credential = await mls.generateCredential(alice)
 
 // Bind the credential and indentity to one key package for alice
-let alice_key_package = await mls.generateKeyPackage(alice, ac)
+let alice_key_package = await mls.generateKeyPackage(alice, alice_credential)
 
 TODO: Include some code examples of client setup here. Highlight the important attributes on the client objects.
 ```
