@@ -19,16 +19,32 @@ All vendors require different functionalities to achieve their objectives. Prior
 
 Then, the proposed methodology for assessing potential solutions would be based on the following criteria:
 
-1) Completeness: Priority is given to solutions that provide comprehensive coverage of core functionalities, while optionally supporting additional functions.
+1) Completeness (Modularity??): Priority is given to solutions that provide comprehensive coverage of core functionalities, while optionally supporting additional functions.
 
 2) Simplicity: The ease of implementation and adoption of the solution. <!-- without prior knowledge? -->
 
 3) Interoperability: The ability of the solution to function seamlessly with other potential implementations.
 
+4) Security. MLS uses advanced cryptographical techniques, which are not trivial to implement correctly. A robust API should provide an clear abstraction over these features <!-- components? --> that will allow a secure implementation. 
+
 
 ### Prior/Existing features and/or proposals (if any) that attempt to solve the problem(s)
 
+Several existing initiatives aim to address the stated user problem.
+
+<!-- I am specifically not talking about RFC 9420 here -->
+
+1) The Messaging Layer Security (MLS) Architecture document published as [RFC 9750](https://datatracker.ietf.org/doc/rfc9750) defines the architectural framework for employing MLS within a general secure group messaging infrastructure.
+
+2) Wire has recently advertised the [support and adoption](https://wire.com/hubfs/Whitepapers/Wire%20MLS%20White%20Paper.pdf) of MLS. 
+
+3) Amazon Web Services (AWS) Labs has released an [implementation](https://github.com/awslabs/mls-rs) of the MLS protocol. 
+
+4) Messaging Layer Security over ActivityPub [draft report](https://swicg.github.io/activitypub-e2ee/mls) describes the interfaces between MLS and ActivityPub.
+
 ### Flaws or limitations in existing features/proposals that prevent solving the problem(s)
+
+None of the aforementioned features directly address the challenge of establishing a single, unified standard.
 
 ### Motivation for this explainer, why we think we can do better than the status quo or other proposals
 
