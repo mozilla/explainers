@@ -2,7 +2,7 @@
 
 [Benjamin Beurdouche](mailto:beurdouche@mozilla.com), [Anna Weine](https://github.com/Frosne)
 
-Last updated: September 10, 2025
+Last updated: September 23, 2025
 
 ### User problems to be solved
 <!-- Anna: If the users of MLS are messenger users who'd benefit from MLS, the users of the WebAPI are the
@@ -48,93 +48,13 @@ None of the aforementioned features directly address the challenge of establishi
 
 ### Motivation for this explainer, why we think we can do better than the status quo or other proposals
 
-
-
-### Problem statement
-
-For the longest time, due to the lack of technology, pairwise channels were used
-to communicate between two principals (actors of a protocol) and a lot of
-additional complexities had to be paid by the Applications on top of the
-pairwise channels to build Groups. In particular changing the set of
-participants in groups securely was impractical without a significant amount of
-expertise and security review.
-
-In most cases those custom group protocols were not well (if at all) specified
-nor formally analyzed. Most of the security guarantees provided by strong
-pairwise channels are broken by applications in non-trivial ways because those
-typically don’t provide group agreement (everyone has the same view of the group
-and its secrets) or even the correct notion of authentication or secrecy.
-Performance was also a concern as the computational complexity of creating
-groups or sending messages based on pairwise channels is quite high (O(N^2)) and
-incompatible with large dynamic groups.
-
-We aim at solving this issue in the Web Platform by following the WebRTC example
-and provide a way for Applications to build evolving groups of participants.
-This enables applications for **secure group communication** including
-video-conferencing (SFrameTransform for WebRTC, Media Over QUIC,...), secure
-messaging (RCS, MIMI), encrypted cloud storage, and more.
+We believe that a single, standardized Web API can significantly improve implementation quality by providing an interface that is both resistant to misuse and easy to implement. We also consider that focusing on a limited set of core functions would create a simpler, more approachable <!-- if more approacheable interface exists as a notion -->, and less error-prone interface. 
 
 ### Outline of a proposed solution
 
-Messaging Layer Security (MLS) (RFC 9420) provides convenient and secure
-***Continuous Group Key Agreement (CGKA) for dynamic groups***, ranging from one
-to hundreds of thousands of participants.
+Our goal is to provide a simplified MLS API for Web applications.
 
-The MLS API provides applications with two main capabilities:
-
-* Group management: applications can manage the participation of different
-  entities, including the current browser, in groups.
-
-* Secure messaging: once
-  created, a group generates a shared secret that can be used to provide
-  end-to-end protected messaging with group participants.
-
- This explainer outlines the goals, design, and potential use cases of the API.
-
-### Goals
-
-1. **Provide a Continuous Group Key Agreement**: We want to enable Web and
-Internet applications to use MLS as a way to build and manage groups using its
-secure group key establishment directly from the browser, in particular for
-End-to-End Encrypted applications.
-
-2. **State-of-the-Art Security**: Manipulate sensitive values and cryptographic
-secrets of the protocol natively instead of exposing them to the web
-application. Shipping an up-to-date MLS library which removes the need for
-application developers to have a dedicated evaluation and software lifecycle for
-this critical component. Similar to TLS, QUIC or WebRTC, ensure to provide a
-high quality implementation to users.
-
-3. **Privacy and avoid user tracking**: Prevent user tracking by using
-traditional techniques of partitioning the MLS state by origin. This will ensure
-that strong identifiers like public keys are not reused across sites.
-
-4. **Ensure Performance**: Avoid back and forth between JavaScript, C++, storage
-and cryptographic computations. Handle everything natively within browser native
-code.
-
-### Non-Goals
-
-1. **Expose all possible MLS functionality**: The MLS protocol does not
-currently have a “standard” API as it can be used in many different ways. We
-will provide a significant subset of all these possibilities starting with safe
-defaults and will listen for feedback in case extensions are requested by
-developers.
-
-2. **Guarantee full interoperability across applications**: We cannot force that
-different applications are interoperable, especially in a federated
-context. However if service providers decide to agree on interoperability at the
-application level by defining coherent MLS group and client configurations, the
-MLS layer messages will be interoperable and applications will be able to build
-a shared group.
-
-### How do I enable the experiment ?
-
-If you are not already part of an Origin Trial, navigate to **\`about:config\`**.
-
-For Firefox 135: set **\`security.mls.enabled\`** to **\`true\`**.
-
-For Firefox 136+: set **\`dom.origin-trials.mls.state\`** to **\`1\`**.
+This includes basic functions for group management, such as adding and removing members. For groups, both secure messaging using the internal MLS key schedule and exporting of keying material for more advanced applications is possible.
 
 ### Terminology
 
