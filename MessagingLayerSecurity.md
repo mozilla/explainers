@@ -56,6 +56,8 @@ Our goal is to provide a simplified MLS API for Web applications.
 
 This includes basic functions for group management, such as adding and removing members. For groups, both secure messaging using the internal MLS key schedule and exporting of keying material for more advanced applications is possible.
 
+### Usage, examples, sample code and a prose summary of how it clearly solves the problem(s)
+
 The key notion of any messaging protocol is a client. Client is an agent that uses this protocol to establish shared cryptographic state with other clients. The client does not have to be a part of a group yet. 
 
 Each client could be seen as a public indentity ("Alice", for example), a public encryption key, and a public signature key. Client credentials is a way to prove that a current member owns a specific identity (by proving the owning of the public key). The client identifier and public key -- along with any external credentials -- are often bundled into what is called a key package that is used to add clients to groups.
@@ -304,7 +306,16 @@ benefit from great Forward Secrecy and Post-Compromise-Security properties.
 - Consider and discuss the idea of migrating the management of MLS cryptographic
   keys to the Credential Manager.
 
-### Conclusion
+
+### Draft specification
+
+To be udpated
+
+### Incubation and/or standardization destination
+
+To be updated.
+
+###
 
 The experimental Web API for Messaging Layer Security aims to provide a robust,
 privacy-preserving solution for secure group communication on the web and the
