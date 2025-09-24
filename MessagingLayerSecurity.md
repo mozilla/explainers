@@ -58,9 +58,9 @@ This includes basic functions for group management, such as adding and removing 
 
 ### Usage, examples, sample code and a prose summary of how it clearly solves the problem(s)
 
-The key notion of any messaging protocol is a client. Client is an agent that uses this protocol to establish shared cryptographic state with other clients. The client does not have to be a part of a group yet. 
+The key notion of any messaging protocol is a client. Client is an agent that uses this protocol to establish a shared cryptographic state with other clients. The client does not have to be a part of a group yet. 
 
-Each client could be seen as a public indentity ("Alice", for example), a public encryption key, and a public signature key. Client credentials is a way to prove that a current member owns a specific identity (by proving the owning of the public key). The client identifier and public key -- along with any external credentials -- are often bundled into what is called a key package that is used to add clients to groups.
+Each client could be seen as a public identity ("Alice", for example), a public encryption key, and a public signature key. Client credentials is a way to prove that a current member owns a specific identity (by proving the owning of the public key). The client identifier and public key -- along with any external credentials -- are often bundled into what is called a key package that is used to add clients to groups.
 
 
 ```javascript
@@ -72,13 +72,13 @@ let alice = await mls.generateIdentity()
 // Create credential for alice
 let alice_credential = await mls.generateCredential(alice)
 
-// Bind the credential and indentity to one key package for alice
+// Bind the credential and identity to one key package for alice
 let alice_key_package = await mls.generateKeyPackage(alice, alice_credential)
 
 TODO: Include some code examples of client setup here. Highlight the important attributes on the client objects.
 ```
 
-Groups are collection of users. Each client included in a group is a member of the group. Each group member has access to the group's secrets. 
+Groups are a collection of users. Each client included in a group is a member of the group. Each group member has access to the group's secrets. 
 
 ```javascript
 // A user could create a group
@@ -117,7 +117,7 @@ The changes that a member makes to its group view need to be communicated to oth
 
 1) Commits: Operations that alter the state of the group, resulting in creating a message for other group participants.
 
-2) Proposals: Proposal are suggestioned modifications that don't immediately change the group state. Proposals can be used when a client wants to make a change, but does not want to force the change. Maybe the client doesn't have the necessary permissions or maybe it wants to suggest something.
+2) Proposals: Proposals are suggested modifications that don't immediately change the group state. Proposals can be used when a client wants to make a change, but does not want to force the change. Maybe the client doesn't have the necessary permissions or maybe it wants to suggest something.
 
 ```javascript
 // As in our example above that fact that Alice added a new member to the group created a commit
@@ -140,7 +140,7 @@ Each modification to the group results in an increment of the epoch.
 
 
 ```javascript
-// The group view epochs are constistent between the members
+// The group view epochs are consistent between the members
 is (alice_group.epoch, bob_group.epoch);
 
 // All the participants received the same commit
@@ -158,7 +158,7 @@ is (inc(alice_group.epoch), alice_group_after_commit)
 Since MLS is not solely a protocol for confidential group messaging but also serves as a foundation for secure group communication more broadly, certain applications may require additional cryptographic keys beyond the one used for message encryption. For example, secure file sharing would require a separate encryption key. To address this requirement, MLS provides a mechanism for deriving (exporting) keys.
 
 ```javascript
-// The group views are constistent between the members
+// The group views are consistent between the members
 is (alice_group, bob_group);
 
 // Alice and Bob derive a key to be used for file sharing
