@@ -88,7 +88,7 @@ let alice_group = await mls.groupCreate(alice, alice_credential);
 let alice_group_details = await alice_group.details().members;
 
 // Invite others to the group: 
-// We will talk about commits and context (ctx) later in the explainer
+// We will talk about commits later in the explainer
 let commit_added_bob = await alice_group.add(bob_key_package);
 
 // Send a message to the group
@@ -99,161 +99,77 @@ let commit_removed_bob = await alice_group.remove(bob);
 
 ```
 
-**Key Package**
+A group view represents a group from the perspective of an individual member. A group view reflects the current members of the group, the epoch (the current version of the group) as well as metadata about the group. It should be noted, however, that group views may temporarily diverge across clients if some members have not yet processed the same set of messages.
 
-In order for users to add clients to a group, those need to
-produce some encryption public key and some metadata about the ciphersuite and
-extension they support for that client. This information is called a key
-package. By default the API contains a function to generate those key packages
-with the default parameters and extensions supported by the implementation in
-Firefox.
-
-**Groups and GroupViews**
-
-Since the goal of MLS is to build and manage groups, the API is centered about
-the notion of group and in particular of the GroupView object which represents
-the view of a group for a specific client. The reason for this is that it is
-allowed to have multiple clients in a group as long as they have different
-client identifiers. Though it is an advanced feature, if multiple clients are
-used in the same group, each client is able to manage its view of the group and
-may process messages at different times. Each time the group evolves, a sequence
-number called epoch is incremented.
-
-**Proposals and Commits**
-
-Group operations such as adding or removing users can be either proposed by
-generating a proposal or the change can be made directly by generating a commit
-output. Each commit output contains some information, when adding a user, it
-contains a commit message, which is the information that needs to be transmitted
-to existing members of the group, and a welcome message which is the information
-that needs to be transmitted to the newly added client.
-
-### Basic usage
+Application developers, including those working with the browser API, are not required to manage the low-level details of MLS directly. Instead, they interact with group views, which provide a consistent abstraction of both the group’s membership and its current state. 
 
 ```javascript
-let mls = new MLS()
 
-// Create identities for alice and bob
-let a = await mls.generateIdentity()
-let b = await mls.generateIdentity()
+// Bob joins the group
+let bob_group = await mls.groupJoin(bob, commit_added_bob.welcome);
 
-// Create credentials for alice and bob
-let ac = await mls.generateCredential("alice")
-let bc = await mls.generateCredential("bob")
+// Bob group view and Alice group view are consistent
+is (alice_group.members, bob_group.members);
 
-// Create key packages for alice and bob
-let akp = await mls.generateKeyPackage(a, ac)
-let bkp = await mls.generateKeyPackage(b, bc)
-
-// Bob creates a group
-let gb = await mls.groupCreate(b, bc)
-
-// Bob adds Alice to the group by using the Key Package
-// (this generates a commit output which contains the welcome necessary
-// to alice and the commit to update current members of the group)
-let co1 = await gb.add(akp)
-
-// Bob uses the generated commit to update its group and immediately
-// sends a message to the group (alice, bob)
-let bgide1 = await gb.receive(co1.commit)
-let ctx1 = await gb.send("Hello Alice!")
-
-// Alice uses the welcome to join the group and receives Bob's message
-let ga = await mls.groupJoin(a, co1.welcome)
-let pt1 = await ga.receive(ctx1)
 ```
 
-Note that, to ease testing, the code above runs both participants
-but each browser will typically run one participant.
+The changes that a member makes to its group view need to be communicated to other clients. This occurs two forms:
 
-### A more advanced example…
+1) Commits – Operations that alter the state of the group, resulting in creating a message for other group participants.
+
+2) Proposals - Proposal are suggestioned modifications that don't immediately change the group state. Proposals can be used when a client wants to make a change, but does not want to force the change. Maybe the client doesn't have the necessary permissions or maybe it wants to suggest something.
 
 ```javascript
-// !!!
-// < Insert the code for the basic example here... >
-// !!!
+// As in our example above that fact that Alice added a new member to the group created a commit
+let commit_added_charlie = await alice_group.add(charlie_key_package);
 
-// Charlie creates identity keypair, credential and key package
-let c = await mls.generateIdentity()
-let cc = await mls.generateCredential("charlie")
-let ckp = await mls.generateKeyPackage(c, cc)
+// This commit is then propagated to all the existing members to the group
+let alice_group_added_charlie = await alice_group.receive(commit_added_charlie);
+let bob_group_added_charlie = await bob_group.receive(commit_added_charlie);
 
-// Alice adds Charlie to the group
-let co2 = await ga.add(ckp)
+// Bob does not have a right to remove Charlie, so he proposes the removal
+let propose_remove_charlie = await bob_group.proposeRemove(charlie);
 
-// Alice and Bob process the commit which is adding Charlie
-let agide2 = await ga.receive(co2.commit)
-let bgide2 = await gb.receive(co2.commit)
+// Alice does have a right to remove Charlie, so she generates a commit
+let commit_remove_charlie = await alice_group.receive(propose_remove_charlie);
+// This commit (commit_remove_charlie) will be send to all the participants
 
-// Charlie joins the group and sends a message
-let gc = await mls.groupJoin(c, co2.welcome)
-let ctx2 = await gc.send("Hi all")
+```
 
-// Alice and Bob receive charlie's message
-let apt2 = await ga.receive(ctx2)
-let bpt2 = await gb.receive(ctx2)
+Each modification to the group results in an increment of the epoch.
 
-// Charlie removes Bob from the group
-let co3 = await gc.remove(b)
 
-// Each member receives the commit removing Bob
-let agide3 = await ga.receive(co3.commit)
-let bgide3 = await gb.receive(co3.commit)
-let cgide3 = await gc.receive(co3.commit)
+```javascript
+// The group view epochs are constistent between the members
+is (alice_group.epoch, bob_group.epoch);
 
-// Alice proposes to be removed from the group
-let p4 = await ga.proposeRemove(a)
+// All the participants received the same commit
+let alice_group_after_commit = await alice_group.receive(some_commit);
+let bob_group_after_commit = await bob_group.receive(some_commit);
 
-// Charlie processes the proposal and generates a commit output
-let co4 = await gc.receive(p4)
+// The group views are consistent after receiving the same commit
+is (alice_group_after_commit.epoch, bob_group_after_commit.epoch)
+// The epoch got incremented after receiving the commit. 
+is (inc(alice_group.epoch), alice_group_after_commit)
 
-// Alice and Charlie process the commit to remove Alice
-let agide4 = await ga.receive(co4.commitOutput.commit)
-let cgide4 = await gc.receive(co4.commitOutput.commit)
+```
 
-// Generate identities, credentials and key packages for
-// delphine and ernest
-let d = await mls.generateIdentity()
-let e = await mls.generateIdentity()
-let dc = await mls.generateCredential("delphine")
-let ec = await mls.generateCredential("ernest")
-let dkp = await mls.generateKeyPackage(d, dc)
-let ekp = await mls.generateKeyPackage(e, ec)
+Since MLS is not solely a protocol for confidential group messaging but also serves as a foundation for secure group communication more broadly, certain applications may require additional cryptographic keys beyond the one used for message encryption. For example, secure file sharing would require a separate encryption key. To address this requirement, MLS provides a mechanism for deriving (exporting) keys.
 
-// Charlie adds Delphine to the Group and process the commit
-let co5 = await gc.add(dkp)
-let cgide5 = await gc.receive(co5.commit)
+```javascript
+// The group views are constistent between the members
+is (alice_group, bob_group);
 
-// Delphine uses the welcome to join the group
-let gd = await mls.groupJoin(d, co5.welcome)
+// Alice and Bob derive a key to be used for file sharing
+// For learning more about context, please check RFC 9420
+let exporter_alice = await alice_group.exportSecret("file sharing key", context_for_file_id_and_epoch, len);
+let exporter_bob = await bob_group.exportSecret("file sharing key", context_for_file_id_and_epoch, len);
 
-// Delphine proposes to add Ernest to the group
-let p6 = await gd.proposeAdd(ekp)
+// The keys are equal for consistent groups
+is (exporter_alice, exporter_bob)
 
-// Charlie generate a commit output for Delphine's proposa to add Ernest
-let rec6 = await gc.receive(p6)
-
-// Charlie and Delphine process the commit to add Ernest
-let cgide6 = await gc.receive(rec6.commitOutput.commit)
-let dgide6 = await gd.receive(rec6.commitOutput.commit)
-
-// Ernest joins the group
-let ge = await mls.groupJoin(e, rec6.commitOutput.welcome)
-
-// Create exporter labels and context ("context" in ASCII)
-const context_bytes = new Uint8Array([99, 111, 110, 116, 101, 120, 116]); const exporter_len = 32;
-
-// Ernest generates an exporter secret
-let exporterOutput = await ge.exportSecret(
-	"label", context_bytes, exporter_len);
-
-// This is the shared secret for the group at this epoch
-let secret = exporterOutput.secret;
-
-// Display group information for all group views
-console.log(await gc.details())
-console.log(await gd.details())
-console.log(await ge.details())
+// And the keys for different label ("file sharing key") or context would not be the same
+// This ensures FS and PCS even for derived keys
 ```
 
 ### Open questions
@@ -269,7 +185,7 @@ The following questions fall outside the scope of the current explainer; however
 
 ### Draft specification
 
-To be udpated
+To be updated.
 
 ### Incubation and/or standardization destination
 
