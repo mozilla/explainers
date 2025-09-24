@@ -115,9 +115,9 @@ is (alice_group.members, bob_group.members);
 
 The changes that a member makes to its group view need to be communicated to other clients. This occurs two forms:
 
-1) Commits – Operations that alter the state of the group, resulting in creating a message for other group participants.
+1) Commits: Operations that alter the state of the group, resulting in creating a message for other group participants.
 
-2) Proposals - Proposal are suggestioned modifications that don't immediately change the group state. Proposals can be used when a client wants to make a change, but does not want to force the change. Maybe the client doesn't have the necessary permissions or maybe it wants to suggest something.
+2) Proposals: Proposal are suggestioned modifications that don't immediately change the group state. Proposals can be used when a client wants to make a change, but does not want to force the change. Maybe the client doesn't have the necessary permissions or maybe it wants to suggest something.
 
 ```javascript
 // As in our example above that fact that Alice added a new member to the group created a commit
