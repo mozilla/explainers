@@ -149,6 +149,7 @@ let bob_group_after_commit = await bob_group.receive(some_commit);
 
 // The group views are consistent after receiving the same commit
 is (alice_group_after_commit.epoch, bob_group_after_commit.epoch)
+
 // The epoch got incremented after receiving the commit. 
 is (inc(alice_group.epoch), alice_group_after_commit)
 
