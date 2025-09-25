@@ -8,9 +8,9 @@ Last updated: September 23, 2025
 <!-- Anna: If the users of MLS are messenger users who'd benefit from MLS, the users of the WebAPI are the
 companies that will develop in top of the standard -->
 
-The Messaging Layer Security (MLS) standard ([RFC 9420](https://www.rfc-editor.org/rfc/rfc9420.html)) addresses the challenges of scalable, efficient, and standardized end-to-end encryption for group messaging, while ensuring critical security properties such as forward secrecy (FS), post-compromise security (PCS) for groups with more than two participants. 
+The Messaging Layer Security (MLS) standard ([RFC 9420](https://www.rfc-editor.org/rfc/rfc9420.html)) addresses the challenges of scalable, efficient, and standardized end-to-end encryption for group messaging, while ensuring critical security properties such as forward secrecy (FS), post-compromise security (PCS) for groups with more than two participants.
 
-The standard has already attracted significant attention, with several major <!-- References needed? --> vendors expressing interest in implementing it within their products. Providing a single, standardized, and interoperable approach would offer substantial benefits to messaging application developers as well as the organisations willing to deploy MLS-based communication facilities, enabling them to deliver native, secure messaging support on the web efficiently and reliably. Once supported across all major browsers, developers would be able to write the integration code once and have it work consistently across platforms, significantly reducing development complexity and improving reliability. <!-- Replace one reliability with something else -->
+The standard has already attracted significant attention, with several major vendors expressing interest in implementing it within their products. Providing a single, standardized, and interoperable approach would offer substantial benefits to messaging application developers as well as the organisations willing to deploy MLS-based communication facilities. Ultimately  enabling them to deliver native, secure messaging support on the web efficiently and reliably. Once supported across all major browsers, developers would be able to write the integration code once and have it work consistently across platforms, which in turn would significantly reduce development complexity and improve reliability.
 
 
 ### Methodology for approaching & evaluating solutions
@@ -42,23 +42,23 @@ Several existing initiatives aim to address the stated user problem.
 
 4) Messaging Layer Security over ActivityPub [draft report](https://swicg.github.io/activitypub-e2ee/mls) describes the interfaces between MLS and ActivityPub.
 
+5) [Discord](https://www.thestack.technology/discord-encryption-mls-e2ee/) already uses MLS in their products. 
+
 ### Flaws or limitations in existing features/proposals that prevent solving the problem(s)
 
-None of the aforementioned features directly address the challenge of establishing a single, unified standard.
+However, none of the aforementioned features directly address the challenge of establishing a single, unified standard.
 
 ### Motivation for this explainer, why we think we can do better than the status quo or other proposals
 
-We believe that a single, standardized Web API can significantly improve implementation quality by providing an interface that is both resistant to misuse and easy to implement. We also consider that focusing on a limited set of core functions would create a simpler, more approachable <!-- if more approacheable interface exists as a notion -->, and less error-prone interface. 
+We believe that a single, standardized Web API can significantly improve implementation quality and counter interoperability problems by providing an interface that is both resistant to misuse and easy to implement. We also consider that focusing on a limited set of core functions will  create a simpler, more approachable, and less error-prone interface.
 
 ### Outline of a proposed solution
 
-Our goal is to provide a simplified MLS API for Web applications.
-
-This includes basic functions for group management, such as adding and removing members. For groups, both secure messaging using the internal MLS key schedule and exporting of keying material for more advanced applications is possible.
+Our goal is to provide a simplified MLS API for Web applications.This includes basic functions for group management, such as creating members, creating groups, adding and removing members, and exporting keys. For groups, both secure messaging using the internal MLS key schedule and exporting of keying material for more advanced applications is possible.
 
 ### Usage, examples, sample code and a prose summary of how it clearly solves the problem(s)
 
-The key notion of any messaging protocol is a client. Client is an agent that uses this protocol to establish a shared cryptographic state with other clients. The client does not have to be a part of a group yet. 
+The key notion of any messaging protocol is a client. A client is an agent that uses this protocol to establish a shared cryptographic state with other clients. The client does not have to be a part of a group yet.
 
 Each client could be seen as a public identity ("Alice", for example), a public encryption key, and a public signature key. Client credentials is a way to prove that a current member owns a specific identity (by proving the owning of the public key). The client identifier and public key -- along with any external credentials -- are often bundled into what is called a key package that is used to add clients to groups.
 
