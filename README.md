@@ -75,7 +75,7 @@ especially existing proposal flaws, and why/how we can do better.
 ## TC39 Stage 0 Proposals
 An explainer for [TC39 Stage 0 proposal](https://tc39.es/process-document/) in addition:
 * must complete sections 1-3
-* may add sections 4-5
+* may add sections 4-5 and should before presenting at a TC39 meeting
 * must not add section(s) 6+. Stage 0 proposals are not for identifying a particular solution.
 
 ## Iterating and soliciting feedback
@@ -83,13 +83,15 @@ This repo is for developing explainer files until ready for external feedback,
 or archival if we decide an explainer is no longer worth pursuing.
 
 ### Timely iteration
-For new minimum explainers (those missing any of sections 2 through 6),
-we expect that those sections are added within 2-4 weeks of
-publishing your minimum explainer, using pull requests.
+For new minimal explainers, 
+we expect additional sections to be added 
+using pull requests 
+within 2-4 weeks.
+In general, promptly add sections up through 6 unless its destination has different requirements (e.g. TC39).
 
 ### Requesting feedback
 When ready to solicit external feedback on an explainer:
-* minimally write up at least sections 1-7. Exception: TC39 Stage 0 proposals may stop at section 3.
+* minimally write up at least sections 1-7 (some venues are OK with less, like TC39).
 * create a new repo for your explainer at `github.com/mozilla/SHORTNAME`
   where `SHORTNAME` is the short name you came up with in step 0 for a minimum explainer.
   Append `-explainer` if necessary to avoid a name collision with an existing repository
