@@ -91,7 +91,7 @@ In general, promptly add sections up through 6 unless its destination has differ
 
 ### Requesting feedback
 When ready to solicit external feedback on an explainer:
-* minimally write up at least sections 1-7 unless its destination has different requirements (e.g. TC39).
+* minimally write up at least sections 1-7 (some venues are OK with less, like TC39).
 * create a new repo for your explainer at `github.com/mozilla/SHORTNAME`
   where `SHORTNAME` is the short name you came up with in step 0 for a minimum explainer.
   Append `-explainer` if necessary to avoid a name collision with an existing repository
