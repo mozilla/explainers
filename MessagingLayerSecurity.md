@@ -54,7 +54,7 @@ We believe that a single, standardized Web API can significantly improve impleme
 
 ### Outline of a proposed solution
 
-Our goal is to provide a simplified MLS API for Web applications.This includes basic functions for group management, such as creating members, creating groups, adding and removing members, and exporting keys. For groups, both secure messaging using the internal MLS key schedule and exporting of keying material for more advanced applications is possible.
+Our goal is to provide a simplified MLS API for Web applications. This includes basic functions for group management, such as creating members, creating groups, adding and removing members, and exporting keys. For groups, both secure messaging using the internal MLS key schedule and exporting of keying material for more advanced applications is possible.
 
 ### Usage, examples, sample code and a prose summary of how it clearly solves the problem(s)
 
