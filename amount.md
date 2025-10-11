@@ -50,7 +50,7 @@ Both elements are also widely natively supported by browsers
 ([MDN data support](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/data#browser_compatibility), 
 [MDN time support](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/time#browser_compatibility)), 
 however without any default user-discernible effects, 
-including [in screen readers](https://twitter.com/LeonieWatson/status/1333078194925264898), 
+including [in screen readers]([https://twitter.com/LeonieWatson/status/1333078194925264898](https://web.archive.org/web/20201129160223/https://twitter.com/LeonieWatson/status/1333078194925264898)), 
 despite the “[First rule of ARIA use](https://www.w3.org/TR/aria-in-html/#rule1)” encouraging publishers to use native HTML semantic elements.
 
 ### Prior proposals
