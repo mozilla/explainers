@@ -11,14 +11,14 @@ In general we expect to focus on developing explainers that:
 * or a counterproposal that is more aligned with the Web Vision than existing technologies or proposals
 
 ## Current Explainers
-* [EyeDropper as &lt;input>](https://github.com/mozilla/explainers/blob/main/eyedropper-input.md)
-* [Amount](https://github.com/mozilla/explainers/blob/main/amount.md)
+* [EyeDropper as &lt;input>](eyedropper-input.md)
+* [Amount](amount.md)
 * [Translation API](translation.md)
 * [Standard Measures with U.S. English](standard-measures-en-us.md)
 * ...
 
 ## Feedback on Explainers
-We strongly prefer external feedback only on explainers that are in their own repo (see [Explainer file progress](#explainer-file-progress)).
+We strongly prefer external feedback only on explainers that are in their own repo (see [Explainer repo progress](#explainer-repo-progress)).
 
 If you see something in a Mozilla Explainer that you want to suggest changing or fixing, please file an issue describing the problem and suggested resolution, not a pull request.  
 Exception: minor non-substantive or typographical changes may be submitted as PRs.
