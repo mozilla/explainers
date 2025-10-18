@@ -55,6 +55,10 @@ drawing heavily from experiences in developing, maintaining, and using [Fluent](
 Mozilla's localization system for natural-sounding translations.
 Fluent has also been a significant source of inspiration and experience in the design of Unicode MessageFormat.
 
+The [DOM Overlays rev 3](https://github.com/zbraniecki/fluent-domoverlays-js/wiki/New-Features-(rev-3)) document
+identifies and enumerates a number of proposed changes to Mozilla's DOM localization system
+that are incorporated in this proposal.
+
 The [DOM Parts proposal](https://github.com/WICG/webcomponents/blob/gh-pages/proposals/DOM-Parts.md)
 has some overlap with its aim to enable similar updates to element contents and attributes,
 but does not consider localization as one of its use cases.
