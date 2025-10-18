@@ -20,7 +20,7 @@ and for existing libraries and frameworks to start using the standard solution i
 
 ## Methodology for approaching & evaluating solutions
 
-This proposal seeks to directly addres the concerns raised in the
+This proposal seeks to directly address the concerns raised in the
 [Internationalization section of Mozilla's Web Vision](https://www.mozilla.org/en-US/about/webvision/full/#internationalization),
 and is in fact directly referenced there:
 
@@ -81,14 +81,14 @@ we can make it available for everyone.
 
 Through our years of experience in using a Fluent-based variant of DOM localization
 in Firefox, Thunderbird, and many other Mozilla products,
-we've managed to gain some confidence in the strenths and capabilities of such a solution,
+we've managed to gain some confidence in the strengths and capabilities of such a solution,
 along with finding some pitfalls that a standard solution should avoid.
 
 The composition of HTML, DOM, CSS, and JavaScript and related technologies
 is commonly used to create applications with both content and user interface.
 One of the core value propositions provided by this stack of technologies is their open, semantic and pluggable nature.
 
-For example CSS provides technology to apply styles and themes to HTML Documents,
+For example, CSS provides technology to apply styles and themes to HTML Documents,
 but also enables web browsers and third-party addons such as extensions or accessibility tools
 to adjust the styles and themes at runtime.
 
