@@ -127,8 +127,8 @@ we would also add an attribute for defining _**localization arguments**_
 as a set of key-value pairs that serve as arguments when formatting a _message_.
 
 When an element includes a _localization identifier_ reference as an attribute,
-its contents and/or other attribute values are replaced
-with the corresponding _message's_ formatted results.
+its contents and/or other [translatable attribute](https://html.spec.whatwg.org/multipage/dom.html#translatable-attributes) values
+are replaced with the corresponding _message's_ formatted results.
 
 In order for the system to be accessible programmatically,
 a JavaScript API for the _localization context_ is included in the proposal.
@@ -222,7 +222,7 @@ let msg = document.l10n.getMessage("greeting").format({ userName: "Mary" });
 
 ### Attribute Localization
 
-The localization of element attributes is made possible with:
+The localization of [translatable](https://html.spec.whatwg.org/multipage/dom.html#translatable-attributes) element attributes is made possible with:
 
 ```html
 <html>
@@ -383,7 +383,8 @@ and to only ensure that interfaces are provided that make it possible to impleme
 
 Regarding the localization of attributes either directly or via DOM overlays,
 we may want to adopt an opt-in-only model in which a developer
-must explicitly list which attributes should be localizable.
+must explicitly list which attributes should be localizable,
+rather than making all [translatable attributes](https://html.spec.whatwg.org/multipage/dom.html#translatable-attributes) localizable by default.
 
 For example, in the following example,
 `alt` is the only attribute that localizers would be able to modify in translation:
