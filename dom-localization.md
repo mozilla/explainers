@@ -400,6 +400,12 @@ For example, in the following example,
 ### Element Identify Should be Retained
 
 Elements should not be recreated during localization.
+If applying a localization were to effectively set the `innerHTML` of an element,
+the identities of all elements would change, and e.g. all event handlers would be lost.
+
+A [JavaScript PoC](https://github.com/zbraniecki/fluent-domoverlays-js/blob/1a023e0268d5afe121ccad1a5683037ff2c488d4/src/index.js#L74-L150)
+of an algorithm applying a DOM overlay localization while retaining identity is available,
+but the details of this will need further iteration as details of the proposal evolve.
 
 For example, even after multiple retranslations,
 the identity of the following `<button>` element should be the same:
