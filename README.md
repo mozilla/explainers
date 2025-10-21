@@ -76,7 +76,7 @@ especially existing proposal flaws, and why/how we can do better.
 An explainer for [TC39 Stage 0 proposal](https://tc39.es/process-document/) in addition:
 * must complete sections 1-3
 * may add sections 4-5 and should before presenting at a TC39 meeting
-* must not add section(s) 6+. Stage 0 proposals are not for identifying a particular solution.
+* should not normally add section(s) 6+. Stage 0 proposals are not for identifying a particular solution.
 
 ## Iterating and soliciting feedback
 This repo is for developing explainer files until ready for external feedback, 
