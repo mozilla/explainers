@@ -15,6 +15,7 @@ In general we expect to focus on developing explainers that:
 * [Amount](https://github.com/mozilla/explainers/blob/main/amount.md)
 * [Translation API](translation.md)
 * [Standard Measures with U.S. English](standard-measures-en-us.md)
+* [TC39: Import Text](tc39-import-text.md)
 * ...
 
 ## Feedback on Explainers
