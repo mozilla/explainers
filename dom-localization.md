@@ -4,7 +4,7 @@ Author: [Eemeli Aro](https://github.com/eemeli)
 Previous authors: [Zibi Braniecki](https://github.com/zbraniecki) and [Erik Nordin](https://github.com/nordzilla)
 
 Localization of web content is currently achieved with a multitude of custom solutions,
-most of which are unable to express the full width and breadth of human expressions in all languages.
+most of which are unable to express the full depth and breadth of human expressions in all languages.
 
 Most localizable content is composed of simple strings,
 and most of the content that has some dependency on input variables only uses them as unmodified placeholders.
