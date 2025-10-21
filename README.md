@@ -13,6 +13,7 @@ In general we expect to focus on developing explainers that:
 ## Current Explainers
 * [EyeDropper as &lt;input>](https://github.com/mozilla/explainers/blob/main/eyedropper-input.md)
 * [Amount](https://github.com/mozilla/explainers/blob/main/amount.md)
+* [DOM Localization](dom-localization.md)
 * [Translation API](translation.md)
 * [Standard Measures with U.S. English](standard-measures-en-us.md)
 * ...
