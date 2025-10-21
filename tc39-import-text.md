@@ -79,3 +79,31 @@ Loading text files in JavaScript should be easy,
 and can be done without adding new complexities to the language.
 Existing functionality (loading JSON files)
 already effectively internally requires the functionality being proposed here.
+
+## Outline of a proposed solution
+
+Add a new `'text'` value for the `type` import attribute,
+with which a file may be imported as a string value:
+
+```js
+import text from "path/to/file.txt" with { type: "text" };
+```
+
+No affordance for defining the encoding ought to be given,
+with all files parsed as UTF-8.
+
+## Shortcomings
+
+Importing non-UTF-8 text will require importing it as an Uint8Array,
+and explicitly decoding it:
+
+```js
+import uint8array from "path/to/file.txt" with { type: "bytes" };
+let text = new TextDecoder("utf-16").decode(uint8array);
+```
+
+<!-- ## draft specification -->
+
+## Incubation and standardization destination
+
+TC39
