@@ -11,11 +11,12 @@ In general we expect to focus on developing explainers that:
 * or a counterproposal that is more aligned with the Web Vision than existing technologies or proposals
 
 ## Current Explainers
+Oldest first:
 * [EyeDropper as &lt;input>](https://github.com/mozilla/explainers/blob/main/eyedropper-input.md)
 * [Amount](https://github.com/mozilla/explainers/blob/main/amount.md)
-* [DOM Localization](dom-localization.md)
 * [Translation API](translation.md)
 * [Standard Measures with U.S. English](standard-measures-en-us.md)
+* [DOM Localization](dom-localization.md)
 * ...
 
 ## Feedback on Explainers
