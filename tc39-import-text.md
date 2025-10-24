@@ -7,6 +7,9 @@ In a similar manner to why importing
 or [raw bytes](https://github.com/tc39/proposal-import-bytes) is useful in JavaScript,
 importing text is useful, and should be just as easy.
 
+This benefits users, as a relatively common operation can simultaneous be made simpler and more performant,
+leading to a better experience of the web.
+
 As an example use case,
 a developer may want to import a YAML file and parse it with a [user library](https://www.npmjs.com/package/yaml).
 
