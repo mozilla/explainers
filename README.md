@@ -17,6 +17,7 @@ Oldest first:
 * [Translation API](translation.md)
 * [Standard Measures with U.S. English](standard-measures-en-us.md)
 * [DOM Localization](dom-localization.md)
+* [TC39: Import Text](tc39-import-text.md)
 * ...
 
 ## Feedback on Explainers
