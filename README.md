@@ -12,12 +12,13 @@ In general we expect to focus on developing explainers that:
 
 ## Current Explainers
 Oldest first:
-* [EyeDropper as &lt;input>](https://github.com/mozilla/explainers/blob/main/eyedropper-input.md)
-* [Amount](https://github.com/mozilla/explainers/blob/main/amount.md)
+* [EyeDropper as &lt;input>](eyedropper-input.md)
+* [Amount](amount.md)
 * [Translation API](translation.md)
 * [Standard Measures with U.S. English](standard-measures-en-us.md)
 * [DOM Localization](dom-localization.md)
 * [TC39: Import Text](tc39-import-text.md)
+* [Web API for Messaging Layer Security (MLS)](MessagingLayerSecurity.md)
 * ...
 
 ## Feedback on Explainers
