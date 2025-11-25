@@ -17,7 +17,6 @@ Oldest first:
 * [Translation API](translation.md)
 * [Standard Measures with U.S. English](standard-measures-en-us.md)
 * [DOM Localization](dom-localization.md)
-* [TC39: Import Text](tc39-import-text.md)
 * [Web API for Messaging Layer Security (MLS)](MessagingLayerSecurity.md)
 * ...
 
@@ -31,6 +30,7 @@ Exception: minor non-substantive or typographical changes may be submitted as PR
 Explainers migrated or incorporated into an incubation group or standards working group.
 
 * [Privacy-Preserving Attribution Measurement API](https://github.com/mozilla/explainers/tree/main/archive/ppa-experiment), moved to PATWG as [Privacy-Preserving Attribution: Level 1](https://w3c.github.io/ppa/)
+* [TC39: Import Text](archive/tc39-import-text.md), moved to [tc39/proposal-import-text](https://github.com/tc39/proposal-import-text).
 
 ## Archived Explainers
 Explainers we are no longer pursuing, have been superseded, or have been incorporated into another explainer.
