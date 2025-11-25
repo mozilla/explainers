@@ -157,8 +157,8 @@ A purpose-built file format enables for Unicode MessageFormat messages to be rep
 which is not the case when they are e.g. embedded in a JSON document,
 and it enables the systematic representation of comments and metadata that is essential for translation work.
 
-Early work on a potential _message resource_ file format provides
-a [strawman proposal](https://github.com/eemeli/message-resource-wg) of what such a format could look like,
+Work on _message resources_ is currently being incubated at the W3C i18n WG,
+with a [strawman proposal](https://github.com/w3c/i18n-discuss/blob/gh-pages/explainers/message-resources.md) of what such a format could look like,
 along with more detailed discussion of why existing file formats are not sufficient.
 
 ## Examples and Sample Code
