@@ -11,10 +11,13 @@ In general we expect to focus on developing explainers that:
 * or a counterproposal that is more aligned with the Web Vision than existing technologies or proposals
 
 ## Current Explainers
+Oldest first:
 * [EyeDropper as &lt;input>](eyedropper-input.md)
 * [Amount](amount.md)
 * [Translation API](translation.md)
 * [Standard Measures with U.S. English](standard-measures-en-us.md)
+* [DOM Localization](dom-localization.md)
+* [Web API for Messaging Layer Security (MLS)](MessagingLayerSecurity.md)
 * ...
 
 ## Feedback on Explainers
@@ -27,6 +30,7 @@ Exception: minor non-substantive or typographical changes may be submitted as PR
 Explainers migrated or incorporated into an incubation group or standards working group.
 
 * [Privacy-Preserving Attribution Measurement API](https://github.com/mozilla/explainers/tree/main/archive/ppa-experiment), moved to PATWG as [Privacy-Preserving Attribution: Level 1](https://w3c.github.io/ppa/)
+* [TC39: Import Text](archive/tc39-import-text.md), moved to [tc39/proposal-import-text](https://github.com/tc39/proposal-import-text).
 
 ## Archived Explainers
 Explainers we are no longer pursuing, have been superseded, or have been incorporated into another explainer.
@@ -76,7 +80,7 @@ especially existing proposal flaws, and why/how we can do better.
 An explainer for [TC39 Stage 0 proposal](https://tc39.es/process-document/) in addition:
 * must complete sections 1-3
 * may add sections 4-5 and should before presenting at a TC39 meeting
-* must not add section(s) 6+. Stage 0 proposals are not for identifying a particular solution.
+* should not normally add section(s) 6+. Stage 0 proposals are not for identifying a particular solution.
 
 ## Iterating and soliciting feedback
 This repo is for developing explainer files until ready for external feedback, 
