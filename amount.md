@@ -136,3 +136,10 @@ As an exploration, to extend the `<amount>` element to support currency, we coul
   * e.g. `<amount currency=USD value=64000>$64,000</amount>`
 * The presence of both `unit` and `currency` attributes is an error. The user agent must ignore both attributes.
 * Quantity change: If neither a unit (attribute or parsed) nor `currency` attribute are present, the amount is unitless and expresses a quantity.
+
+## Alternatives considered
+
+* Add a unit="" attribute to the `<data>` element (proposed in [#42](https://github.com/mozilla/explainers/issues/42))
+  * Advantage: seemingly simpler: only adding an attribute to an existing element rather than adding a new element
+  * Disadvantage: likely to violate existing developer presentational and behavioral expectations of the existing `<data>` element, that is no (browser default) change in presentation or behavior is ever expected on any `<data>` element. A key goal this functionality (through the `<amount>` element) is to explicitly encourage both a default presentational hint (e.g. from browser default styling) and a behavior change (e.g. one or more context menu items or other UI affordance) to semi-automatically provide unit conversions to the user. While this is theoretically somewhat implementable via an attribute selector in the default style sheet, the change from `<data>` elements never by default impact presentation and behavior to `<data>` elements may sometimes impact presentation and behavior adds complexity to the developer mental model of the existing `<data>` element.
+  * Conclusion: per the principle of least surprise, it is better to leave the `<data>` element alone, and predictable in its prior and well-established default (lack of any special) behavior, and instead provide web authors with an element that explicitly enables browser default enhancements.
