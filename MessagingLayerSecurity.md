@@ -134,7 +134,7 @@ To add another client, the application obtains that client’s key package throu
 
 The group operation produces protocol data that the application must deliver.
 
-```
+```js
     await deliverToExistingGroupMembers(commitOutput.commit);
 
     if (commitOutput.welcome) {
@@ -150,7 +150,7 @@ The user agent is responsible for producing the MLS protocol output and updating
 
 A newly added client joins a group by processing a Welcome message delivered by the application.
 
-```
+```js
     const welcome = await receiveWelcomeFromApplicationServer();
 
     const joinedGroup = await mls.groupJoin(clientId, welcome);
