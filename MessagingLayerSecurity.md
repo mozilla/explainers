@@ -107,8 +107,6 @@ A client first creates a local MLS identity state, creates a credential, and gen
 
 In this flow, the application receives the values it needs to participate in group setup, but the user agent manages the MLS-related state needed to continue using the identity and credential.
 
-\
-
 
 
 ### Creating a group
@@ -137,8 +135,6 @@ The group operation produces protocol data that the application must deliver.
     }
 
 The user agent is responsible for producing the MLS protocol output and updating local group state according to the API’s rules, the application is responsible for delivery.
-
-\
 
 
 
