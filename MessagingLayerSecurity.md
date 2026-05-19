@@ -98,12 +98,14 @@ The following examples illustrate how an application could use the proposed API.
 
 A client first creates a local MLS identity state, creates a credential, and generates a key package. The application can then publish the key package through its own service so that another client can add this client to a group.
 
+```js
     const mls = new MLS();
     const clientId = await mls.generateIdentity();
     const credential = await mls.generateCredential("alice@example");
     const keyPackage = await mls.generateKeyPackage(clientId, credential);
     // Application-defined
     await publishKeyPackageToApplicationServer(keyPackage);
+```
 
 In this flow, the application receives the values it needs to participate in group setup, but the user agent manages the MLS-related state needed to continue using the identity and credential.
 
@@ -113,7 +115,9 @@ In this flow, the application receives the values it needs to participate in gro
 
 A client can create a new MLS group from its local identity and credential.
 
+```js
     const group = await mls.groupCreate(clientId, credential);
+```
 
 The returned `MLSGroupView` represents this client’s local view of the group. The application can use this object to add members, process messages, protect application data, inspect group state, and export secrets.
 
@@ -122,17 +126,21 @@ The returned `MLSGroupView` represents this client’s local view of the group. 
 
 To add another client, the application obtains that client’s key package through an application-defined mechanism:
 
+```js
     const bobKeyPackage = await fetchKeyPackageFromServer("bob");
 
     const commitOutput = await group.add(bobKeyPackage);
+```
 
 The group operation produces protocol data that the application must deliver.
 
+```
     await deliverToExistingGroupMembers(commitOutput.commit);
 
     if (commitOutput.welcome) {
      await deliverWelcomeToNewMember("bob", commitOutput.welcome);
     }
+```
 
 The user agent is responsible for producing the MLS protocol output and updating local group state according to the API’s rules, the application is responsible for delivery.
 
@@ -142,50 +150,53 @@ The user agent is responsible for producing the MLS protocol output and updating
 
 A newly added client joins a group by processing a Welcome message delivered by the application.
 
+```
     const welcome = await receiveWelcomeFromApplicationServer();
 
     const joinedGroup = await mls.groupJoin(clientId, welcome);
-
+```
 After joining, the returned `MLSGroupView` represents the new client’s local view of the group.
 
 
 ## **Protecting application messages**
 
 To send a message to the group, the application calls `send()` on the group view.
-
+```js
     const protectedMessage = await group.send("hello group");
     // Application defined
     await deliverToGroup(protectedMessage);
-
+```
 The `send()` operation does not perform network delivery. It produces an MLS-protected application message that the application transports through its own infrastructure.
 
 
 ## **Processing received messages**
 
 When the application receives an MLS message, it passes the message to the relevant group view.
-
+```js
     const received = await group.receive(incomingMessage);
-
+```
 The result depends on the type of message that was processed. For example, a received application message may produce application plaintext.
 
+```js
     if (received.type === "application-message-plaintext") {
      const plaintext = received.content;
      displayMessage(plaintext);
     }
-
+```
 A received commit may update the local group state and produce commit-related output.
 
+```js
     if (received.type === "commit-processed") {
      await updateLocalConversationState(received);
     }
-
+```
 The exact message validation behavior, error behavior, and state transition behavior need to be defined by the draft specification.
 
 
 ## **Exporting an application secret**
 
 Some applications need group-derived secret material for application-specific encryption. For example, a file sharing application might use an exported secret to protect a file key.
-
+```js
     const context = new TextEncoder().encode("shared-folder-123");
     const exported = await group.exportSecret(
      "file-encryption",
@@ -193,7 +204,7 @@ Some applications need group-derived secret material for application-specific en
      32
     );
     const fileKey = exported.secret;
-
+```
 Applications need to use exporter labels and contexts carefully. Different application purposes should use distinct labels and context values.
 
 These examples show how the common cryptographic parts of secure group communication can be provided by the Web platform, while application-specific policy and delivery remain with the application.
