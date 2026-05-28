@@ -92,7 +92,7 @@ const welcome = await myApp.receiveWelcomeFromApplicationServer();
 const joinedGroup = await mls.joinGroup(identity, welcome);
 ```
 
-The groupJoin operation produces an  `MLSGroupView` that represents the new client’s local view of the group. The new member (“bob”) has the same view of the group state as the creator of the group (“alice”).
+The `groupJoin()` operation produces an  `MLSGroupView` that represents the new client’s local view of the group. The new member (“bob”) has the same view of the group state as the creator of the group (“alice”).
 
 The API also supports removing members from groups, using a similar pattern.
 
