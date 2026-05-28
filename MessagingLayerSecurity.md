@@ -36,7 +36,7 @@ The following examples illustrate how an application could use the proposed API.
 In the following examples, calls on `myApp` represent application-defined operations, such as network delivery or server communication. These are not part of the proposed API.
 
 
-### Preparing a client {#h.6g83z9i2ehuj}
+### Preparing a client
 
 A client first creates a local MLS identity, which includes the credential and key package needed to participate in groups. The application can then store or publish this identity through its own service so that another client can add this client to a group.
 
