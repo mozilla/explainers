@@ -26,7 +26,7 @@ Applications can also bring an MLS implementation into the web application direc
 
 The `MLS` interface is the client-level entry point for the API. It lets an application create a browser-managed client identity for participating in MLS groups, and exposes group lifecycle operations such as creating a new group or joining an existing group.
 
-MLSGroupView represents an MLS group. Applications can use this to decrypt protected messages received from other group members, produce protected application messages to send to the group, and manage group state.
+`MLSGroupView` represents an MLS group. Applications can use this to decrypt protected messages received from other group members, produce protected application messages to send to the group, and manage group state.
 
 
 ## **Proposed API Usage**
@@ -78,7 +78,7 @@ Adding a new member to a group also produces a message that needs to be sent to 
 
 ```js
 if (commitOutput.welcome) {
-await myApp.deliverWelcomeToNewMember("bob", commitOutput.welcome);
+    await myApp.deliverWelcomeToNewMember("bob", commitOutput.welcome);
 }
 ```
 
@@ -125,7 +125,7 @@ The result depends on the type of message that was processed. For example, a rec
 
 ```js
 if (received.type === "application") { 
-myApp.displayMessage(received.content);
+    myApp.displayMessage(received.content);
 }
 ```
 
@@ -133,7 +133,7 @@ A received message may update the local group state and produce related output.
 
 ```js
 if (received.type === "group-update") {
-await myApp.updateLocalConversationState(received);
+    await myApp.updateLocalConversationState(received);
 }
 ```
 
@@ -157,11 +157,11 @@ Some applications need group-derived secret material for application-specific cr
 const context = new TextEncoder().encode("shared-folder-123");
 const key = await group.exportSecret("files", context, 32);
 const fileKey = await crypto.subtle.importKey(
-"raw", 
-key.secret,     
-{ name: "AES-GCM" }, 
-false, 
-["encrypt", "decrypt"] );
+    "raw", 
+    key.secret,     
+    { name: "AES-GCM" }, 
+    false, 
+    ["encrypt", "decrypt"] );
 ```
 
 
