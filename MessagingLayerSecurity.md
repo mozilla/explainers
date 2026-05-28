@@ -85,7 +85,7 @@ if (commitOutput.welcome) {
 
 ## **Joining a group**
 
-A newly added client joins a group by processing a Welcome message delivered by the application.
+A newly added client joins a group by processing a `welcome` message delivered by the application.
 
 ```js
 const welcome = await myApp.receiveWelcomeFromApplicationServer();
