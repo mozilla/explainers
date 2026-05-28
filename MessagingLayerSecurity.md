@@ -13,7 +13,7 @@ These risks do not disappear just because an application uses an existing MLS li
 This explainer proposes a “batteries included” continuous group key agreement API based on a subset of the Messaging Layer Security protocol. The proposed API focuses on providing the basic tools necessary to secure group communication in web applications, while keeping group secrets in browser-managed state and minimizing the amount of cryptographic state management that each application needs to implement itself.
 
 
-## **Alternatives** {#h.8m2fkp47mvhg}
+## **Alternatives**
 
 There is currently no Web platform API for group secret establishment and end-to-end group communication. Existing security mechanisms generally address two-party or client-server communication, not shared cryptographic group state for dynamic groups. As a result, web applications that want this property usually need to build and integrate it themselves.
 
@@ -22,14 +22,14 @@ The Web platform does provide pieces that can be used to assemble such a system.
 Applications can also bring an MLS implementation into the web application directly. For example, a Rust implementation such as OpenMLS can be compiled to WebAssembly and used from JavaScript. This makes it possible to run MLS-related logic in a web application today, but only as part of an application-managed design rather than as a common Web platform capability.
 
 
-## **Outline of a proposed solution** {#h.8epyr9x259hh}
+## **Outline of a proposed solution**
 
 The `MLS` interface is the client-level entry point for the API. It lets an application create a browser-managed client identity for participating in MLS groups, and exposes group lifecycle operations such as creating a new group or joining an existing group.
 
 MLSGroupView represents an MLS group. Applications can use this to decrypt protected messages received from other group members, produce protected application messages to send to the group, and manage group state.
 
 
-## **Proposed API Usage** {#h.avi0vopq7gf}
+## **Proposed API Usage**
 
 The following examples illustrate how an application could use the proposed API. Method names and return types may change as the API design is refined.
 
@@ -48,7 +48,7 @@ await myApp.saveIdentity("alice", identity);
 In this flow, the application receives the values it needs to participate in group setup, but the user agent manages the MLS-related state needed to continue using the identity and credential.
 
 
-### Creating a group {#h.suk34h5wtdog}
+### Creating a group
 
 A client can create a new MLS group from its local identity.
 
@@ -59,7 +59,7 @@ const group = await mls.createGroup(identity);
 This creates a group where the identified client is the only member. The returned `MLSGroupView` represents this client’s local view of the group. The application can use this object to add members, process messages, protect application data, inspect group state, and export secrets.
 
 
-### Adding a member {#h.n7y65b25re2w}
+### Adding a member
 
 To add another client, the application obtains that client’s key package through an application-defined mechanism:
 
@@ -83,7 +83,7 @@ await myApp.deliverWelcomeToNewMember("bob", commitOutput.welcome);
 ```
 
 
-## **Joining a group** {#h.isza19ihzttz}
+## **Joining a group**
 
 A newly added client joins a group by processing a Welcome message delivered by the application.
 
@@ -99,7 +99,7 @@ The API also supports removing members from groups, using a similar pattern.
 There are some cases that require the application to mediate outright conflicts — for example, when two members commit simultaneously. In such cases, the delivery service is expected to sequence commits, and members whose commit was not accepted must re-apply their proposals on top of the winning commit.
 
 
-## **Protecting application messages** {#h.zibf72ln9rrs}
+## **Protecting application messages**
 
 To send a message to the group, the application calls `send()` on the group view.
 
@@ -113,7 +113,7 @@ The `send()` operation does not perform network delivery. It produces an MLS-pro
 Sending an application message does not alter group state. If a member does not receive a message, they simply miss its content — the group state remains consistent for all members.
 
 
-## **Receiving messages** {#h.bnx68uqqpnna}
+## **Receiving messages**
 
 When the application receives an MLS message, it passes the message to the relevant group view.
 
@@ -138,7 +138,7 @@ await myApp.updateLocalConversationState(received);
 ```
 
 
-## **Additional MLS capabilities** {#h.hyyel9w38op0}
+## **Additional MLS capabilities**
 
 The examples above focus on the core operations needed by most applications: creating and joining groups, processing group updates, and sending and receiving protected messages. 
 
@@ -149,7 +149,7 @@ The proposed API is intentionally opinionated, exposing the operations that matt
 The following example illustrates secret export, one of the more commonly needed capabilities.
 
 
-### Exporting an application secret {#h.n7kiyzuu80il}
+### Exporting an application secret
 
 Some applications need group-derived secret material for application-specific cryptographic operations. For example, a file sharing application might use an exported secret to encrypt a file. Bytes exported from the group are converted to a WebCrypto API AES-256-GCM key.
 
@@ -165,18 +165,18 @@ false, 
 ```
 
 
-## **Caveats, shortcomings, and other drawbacks of design choices, both current and any prior iterations** {#h.nfr21d85wxso}
+## **Caveats, shortcomings, and other drawbacks of design choices, both current and any prior iterations**
 
 MLS can protect message contents and authenticate group state, but delivery services and network observers may still learn information such as message timing, message size, group activity, and delivery patterns depending on the application’s transport design.
 
 Applications are responsible for binding credentials to user accounts and verifying who they're communicating with. Users may not have visibility into whether this binding is done correctly.
 
 
-## **draft specification** {#h.4dqbqpmm6zoo}
+## **draft specification**
 
 <https://frosne.github.io/MLS-WebAPI-Proposal/>
 
 
-## **incubation and/or standardization destination, this can be:** {#h.67jtlae5exp4}
+## **incubation and/or standardization destination, this can be:**
 
 The eventual standards-track destination remains open.
