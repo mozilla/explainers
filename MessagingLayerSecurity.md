@@ -1,10 +1,8 @@
-# MLS Explainer (updated after the review) {#h.osu770mr7lux}
+# MLS Explainer 
 
 Author: [Anna Weine](https://github.com/Frosne)
 
-Last updated: May 27, 2026
-
-***
+Last updated: May 28, 2026
 
 People increasingly use web applications for group communication, collaboration, and shared work. These groups often exchange sensitive information, such as messages, documents, files, comments, tasks, or project state. Users need this information to remain confidential and authentic even as group membership changes over time. When a group adds a new participant or removes an existing participant, future communication should be protected according to the updated membership.
 
