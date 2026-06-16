@@ -362,6 +362,46 @@ The above example would produce the following DOM after localization:
 </div>
 ```
 
+### Language Availability and Switching
+
+As a part of this work, or in parallel with it,
+it would be useful to explore how a page could advertise which locales it's available in,
+and to support live language switching.
+
+As one possibility, including a list of available top-level `lang` values
+and supporting templating would make it possible for language selection functionality
+be provided, either as a (new) part of the browser UI, or as a JavaScript API.
+
+This would allow for a a localised experience to be provided using a single static HTML,
+combined with multiple separate _message resources_, for each supported locale.
+
+```html
+<html lang="en-US" lang-available="en-GB es fi fr">
+  <head>
+    <link rel="messages" src="/path/to/{lang}.messages">
+  </head>
+  <body>
+    <div msg="example">
+      This <a href="/page">color</a> is gray
+    </div>
+  </body>
+</html>
+```
+
+```properties
+# /path/to/en-GB.messages
+@locale en-GB
+
+example = This {#a}colour{/a} is grey
+```
+
+```properties
+# /path/to/fi.messages
+@locale fi
+
+example = Tämä {#a}väri{/a} on harmaa
+```
+
 ## Caveats and Shortcomings, and other drawbacks of design choices, both current and any prior iterations
 
 ### Resource Loading May be Slow
