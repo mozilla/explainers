@@ -6,7 +6,7 @@ Last Update: Jun 16, 2026
 
 # Problem
 
-Cross-Site Scripting (XSS) has ranked as [one of the top 3 most-reported security issues for a full decade](https://cwe.mitre.org/top25/archive/2025/2025_cwe_top25.html), despite various prior attempts at mitigation.
+Despite various prior attempts at mitigation, Cross-Site Scripting (XSS) has remained as [one of the top 3 most-reported security issues for a full decade](https://cwe.mitre.org/top25/archive/2025/2025_cwe_top25.html).
 
 # Methodology for Approaching & Evaluating Solutions
 
