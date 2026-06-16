@@ -102,7 +102,7 @@ Structurally, the proposal touches three layers: CSP provides the opt-in, Truste
 
 ### CSP: an implicit sanitization mode
 
-The new keywords set a per-document *implicit sanitization mode*: `strict` (via `'sanitize-html'`), `baseline` (via `'sanitize-html-baseline'`), or none. The modes map onto the Sanitizer configurations that the HTML standard already defines: `default` uses the [built-in safe default configuration](https://html.spec.whatwg.org/multipage/dynamic-markup-insertion.html#built-in-safe-default-configuration) (as in `new Sanitizer()`), `baseline` uses the [built-in safe baseline configuration](https://html.spec.whatwg.org/multipage/dynamic-markup-insertion.html#built-in-safe-baseline-configuration) (as in `new Sanitizer({})`), which allows all elements and attributes except those that can lead to script execution.
+The new keywords set a per-document *implicit sanitization mode*: `default` (via `'sanitize-html'`), `baseline` (via `'sanitize-html-baseline'`), or none. The modes map onto the Sanitizer configurations that the HTML standard already defines: `default` uses the [built-in safe default configuration](https://html.spec.whatwg.org/multipage/dynamic-markup-insertion.html#built-in-safe-default-configuration) (as in `new Sanitizer()`), `baseline` uses the [built-in safe baseline configuration](https://html.spec.whatwg.org/multipage/dynamic-markup-insertion.html#built-in-safe-baseline-configuration) (as in `new Sanitizer({})`), which allows all elements and attributes except those that can lead to script execution.
 
 ### Trusted Types: pass the string through instead of throwing
 
