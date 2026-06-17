@@ -4,10 +4,9 @@ Author: [Eemeli Aro](https://github.com/eemeli)
 Previous authors: [Zibi Braniecki](https://github.com/zbraniecki) and [Erik Nordin](https://github.com/nordzilla)
 
 Presentations:
-- 2026 Web Engines Hackfest
-  ([slides](https://docs.google.com/presentation/d/11jlGRSi_G0BvBN93pb62NdxEc_6TBuRRWT_aS3tmev0/edit?usp=sharing))
-- 2025 TPAC Breakout Session ([slides](https://docs.google.com/presentation/d/1ON2yeocyDSVr8r0cg8ZlhgpFfsvloznq1pJqYSADJs8/edit?usp=sharing))
-- 2023 TPAC Breakout Session ([slides](https://docs.google.com/presentation/d/1cvvNcC2jMKztYKFIAg1Q5JPWrMCd0q8Ac2m7P1RYhOc/edit?usp=sharing))
+- [2026 Web Engines Hackfest](https://docs.google.com/presentation/d/11jlGRSi_G0BvBN93pb62NdxEc_6TBuRRWT_aS3tmev0/edit?usp=sharing)
+- [2025 TPAC Breakout Session](https://docs.google.com/presentation/d/1ON2yeocyDSVr8r0cg8ZlhgpFfsvloznq1pJqYSADJs8/edit?usp=sharing)
+- [2023 TPAC Breakout Session](https://docs.google.com/presentation/d/1cvvNcC2jMKztYKFIAg1Q5JPWrMCd0q8Ac2m7P1RYhOc/edit?usp=sharing)
 
 Users of the web are best served by being able to experience it in their native languages.
 Currently, localization of web content is achieved with a multitude of custom solutions,
