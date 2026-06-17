@@ -3,6 +3,11 @@
 Author: [Eemeli Aro](https://github.com/eemeli)  
 Previous authors: [Zibi Braniecki](https://github.com/zbraniecki) and [Erik Nordin](https://github.com/nordzilla)
 
+Presentations:
+- [2026 Web Engines Hackfest](https://docs.google.com/presentation/d/11jlGRSi_G0BvBN93pb62NdxEc_6TBuRRWT_aS3tmev0/edit?usp=sharing)
+- [2025 TPAC Breakout Session](https://docs.google.com/presentation/d/1ON2yeocyDSVr8r0cg8ZlhgpFfsvloznq1pJqYSADJs8/edit?usp=sharing)
+- [2023 TPAC Breakout Session](https://docs.google.com/presentation/d/1cvvNcC2jMKztYKFIAg1Q5JPWrMCd0q8Ac2m7P1RYhOc/edit?usp=sharing)
+
 Users of the web are best served by being able to experience it in their native languages.
 Currently, localization of web content is achieved with a multitude of custom solutions,
 most of which are unable to express the full depth and breadth of human expressions in all languages.
@@ -117,7 +122,7 @@ _**messages**_ that are defined using [Unicode MessageFormat](https://www.unicod
 Similar to stylesheets, developers will be able to programmatically construct any number of _localization resources_,
 as well as declaratively define them for HTML documents, shadow DOM trees etc.
 
-Within a _localization context_, each _message_ is identified and referenced with a _**localization identifier**_.
+Within a _localization context_, each _message_ is identified and referenced with a _**message identifier**_.
 The _messages_ would then be used to localize DOM elements or fragments.
 
 The mechanism to resolve _localization resources_ is nontrivial
@@ -129,11 +134,11 @@ to provide an optimal solution for formatting _messages_ in the given _localizat
 
 We propose to introduce a set of (potentially namespaced) core attributes to HTML that would allow developers to
 declaratively or programmatically bind DOM elements and fragments to localization _messages_.
-In addition to a _localization identifier_ reference,
+In addition to a _message identifier_ reference,
 we would also add an attribute for defining _**localization arguments**_
 as a set of key-value pairs that serve as arguments when formatting a _message_.
 
-When an element includes a _localization identifier_ reference as an attribute,
+When an element includes a _message identifier_ reference as an attribute,
 its contents and/or other [translatable attribute](https://html.spec.whatwg.org/multipage/dom.html#translatable-attributes) values
 are replaced with the corresponding _message's_ formatted results.
 
@@ -161,7 +166,7 @@ Work on _message resources_ is currently being incubated at the W3C i18n WG,
 with a [strawman proposal](https://github.com/w3c/i18n-discuss/blob/gh-pages/explainers/message-resources.md) of what such a format could look like,
 along with more detailed discussion of why existing file formats are not sufficient.
 
-## Examples and Sample Code
+### Examples and Sample Code
 
 > Note: The following examples include strawman proposals for the additions to HTML, JavaScript,
 > and for the _message resource_ file format.
@@ -175,7 +180,7 @@ _Localization resources_ declared in the `<head>` element of a document are aggr
     <link rel="localization" src="uri/for/resource.mf" />
   </head>
   <body>
-    <h1 l10n-id="greeting" l10n-args="userName: John"></h1>
+    <h1 msg="greeting" msg-username="John"></h1>
   </body>
 </html>
 ```
@@ -183,7 +188,7 @@ _Localization resources_ declared in the `<head>` element of a document are aggr
 If we assume that the resolved _localization resource_ contains a _message_ such as:
 
 ```ini
-greeting = Welcome, {$userName}.
+greeting = Welcome, {$username}.
 ```
 
 Then the above example would produce a DOM matching the following representation after localization:
@@ -194,7 +199,7 @@ Then the above example would produce a DOM matching the following representation
     <link rel="localization" src="uri/for/resource.mf" />
   </head>
   <body>
-    <h1 l10n-id="greeting" l10n-args="userName: John">Welcome, John</h1>
+    <h1 msg="greeting" msg-username="John">Welcome, John</h1>
   </body>
 </html>
 ```
@@ -204,10 +209,12 @@ It should also be possible to define the _localization resource_ directly within
 ```html
 <html>
   <head>
-    <localization> greeting = Welcome, {$userName}. </localization>
+    <script type="messages">
+      greeting = Welcome, {$username}.
+    </script>
   </head>
   <body>
-    <h1 l10n-id="greeting" l10n-args="userName: John"></h1>
+    <h1 msg="greeting" msg-username="John"></h1>
   </body>
 </html>
 ```
@@ -218,13 +225,13 @@ Continuing with the same example, changing the header contents would be possible
 
 ```js
 let h1 = document.querySelector("h1");
-h1.l10n.set("greeting", { userName: "Mary" });
+h1.l10n.set("greeting", { username: "Mary" });
 ```
 
 The formatted title would also be accessible directly in JavaScript:
 
 ```js
-let msg = document.l10n.getMessage("greeting").format({ userName: "Mary" });
+let msg = document.l10n.getMessage("greeting").format({ username: "Mary" });
 ```
 
 ### Attribute Localization
@@ -234,7 +241,7 @@ The localization of [translatable](https://html.spec.whatwg.org/multipage/dom.ht
 ```html
 <html>
   <body>
-    <button l10n-id="ok-button"></button>
+    <button msg="ok-button"></button>
   </body>
 </html>
 ```
@@ -251,7 +258,7 @@ Producing the following DOM after localization:
 <html>
   <body>
     <button
-      l10n-id="ok-button"
+      msg="ok-button"
       title="Title to show on hover"
       aria-label="Main button"
     >
@@ -279,7 +286,7 @@ that would be included in the localized results.
 For example, a developer may create a paragraph element such as the following.
 
 ```html
-<p l10n-id="key1">Message to be localized.</p>
+<p msg="key1">Message to be localized.</p>
 ```
 
 A translator should be able to provide a translation that contains text-level elements if desired.
@@ -292,7 +299,7 @@ At which point, the final localized DOM would be equivalent to the following,
 in which the `<em>` element is interpreted correctly as HTML and rendered accordingly.
 
 ```html
-<p l10n-id="key1">This is <em>my</em> localized message.</p>
+<p msg="key1">This is <em>my</em> localized message.</p>
 ```
 
 #### Functional Elements
@@ -303,7 +310,7 @@ desires a translator to provide localized translations.
 For example, a developer may provide an `<img>` with a `src` attribute.
 
 ```html
-<p l10n-id="key2">Hi, <img src="world.png" /></p>
+<p msg="key2">Hi, <img src="world.png" /></p>
 ```
 
 A translator should be able to provide an `alt` attribute for the `<img>` element.
@@ -315,7 +322,7 @@ key2 = Hello, {#img alt=|world|}!
 The above example would produce the following DOM after localization:
 
 ```html
-<p l10n-id="key2">Hello, <img src="world.png" alt="world" />!</p>
+<p msg="key2">Hello, <img src="world.png" alt="world" />!</p>
 ```
 
 This example allows the translator to add the `alt` attribute unconstrained,
@@ -331,7 +338,7 @@ A developer may want to have `<ul>` or `<ol>` elements be part of the localizati
 in which the translator can then add `<li>` elements.
 
 ```html
-<div l10n-id="key3">
+<div msg="key3">
   <ul></ul>
 </div>
 ```
@@ -350,7 +357,7 @@ key3 = This is a localized list:
 The above example would produce the following DOM after localization:
 
 ```html
-<div l10n-id="key3">
+<div msg="key3">
   This is a localized list:
   <ul>
     <li>Localized item 1</li>
@@ -358,6 +365,46 @@ The above example would produce the following DOM after localization:
     <li>Localized item 3</li>
   </ul>
 </div>
+```
+
+### Language Availability and Switching
+
+As a part of this work, or in parallel with it,
+it would be useful to explore how a page could advertise which locales it's available in,
+and to support live language switching.
+
+As one possibility, including a list of available top-level `lang` values
+and supporting templating would make it possible for language selection functionality
+be provided, either as a (new) part of the browser UI, or as a JavaScript API.
+
+This would allow for a a localised experience to be provided using a single static HTML,
+combined with multiple separate _message resources_, for each supported locale.
+
+```html
+<html lang="en-US" lang-available="en-GB es fi fr">
+  <head>
+    <link rel="messages" src="/path/to/{lang}.messages">
+  </head>
+  <body>
+    <div msg="example">
+      This <a href="/page">color</a> is gray
+    </div>
+  </body>
+</html>
+```
+
+```properties
+# /path/to/en-GB.messages
+@locale en-GB
+
+example = This {#a}colour{/a} is grey
+```
+
+```properties
+# /path/to/fi.messages
+@locale fi
+
+example = Tämä {#a}väri{/a} on harmaa
 ```
 
 ## Caveats and Shortcomings, and other drawbacks of design choices, both current and any prior iterations
@@ -397,7 +444,7 @@ For example, in the following example,
 `alt` is the only attribute that localizers would be able to modify in translation:
 
 ```html
-<p l10n-id="key2" l10n-attrs="alt">Hi, <img src="world.png" /></p>
+<p msg="key2" msgattrs="alt">Hi, <img src="world.png" /></p>
 ```
 
 ### Element Identify Should be Retained
@@ -414,7 +461,7 @@ For example, even after multiple retranslations,
 the identity of the following `<button>` element should be the same:
 
 ```html
-<div data-l10n-id="submit-form">
+<div msg="submit-form">
   <button id="submit">Submit</button>
 </div>
 ```
