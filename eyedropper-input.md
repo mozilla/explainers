@@ -139,4 +139,4 @@ An `input` element whose `type` attribute is in the [Color](https://html.spec.wh
 
 ## Incubation and/or standardization destination
 
-Incubation could in a whatwg/html PR, standardization in WHATWG HTML.
+Incubation should be in a whatwg/html PR, for standardization in WHATWG HTML.
