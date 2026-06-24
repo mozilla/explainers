@@ -29,7 +29,7 @@ The proposed solution should be easy to use and style declaratively without need
 
 ## Flaws or limitations in existing features/proposals
 
-The EyeDropper API only supports sRGB. &lt;input type=color> also currently only supports sRGB, but there’s an [issue to add wide-gamut support](https://github.com/whatwg/html/issues/3400).
+The EyeDropper API only supports sRGB. `&lt;input type=color>` supports wide-gamut with [`colorspace=display-p3`](https://html.spec.whatwg.org/#attr-input-colorspace).
 
 The EyeDropper API has no declarative button built-in.
 
@@ -37,7 +37,6 @@ The EyeDropper API has no declarative button built-in.
 ## Proposed solution
 
 See [Consider extending &lt;input type=color> instead](https://github.com/WICG/eyedropper-api/issues/35).
-
 
 ## Examples
 
@@ -47,41 +46,97 @@ Minimal HTML example:
 <input type=color eyedropper onchange="setPaintColor(this.value)">
 ```
 
-Existing EyeDropper API code would continue to work (assuming no renaming), but the constructor would create an &lt;input type=color eyedropper> element.
+JavaScript example:
 
 ```js
-// Create an EyeDropper object (<input type=color eyedropper>)
-let eyeDropper = new EyeDropper();
+// Create an <input type=color eyedropper>
+const eyeDropper = document.createElement('input');
+eyeDropper.type = 'color';
+eyeDropper.colorSpace = 'display-p3';
+eyeDropper.eyeDropper = true;
+eyeDropper.onchange = e => {
+  console.log(e.target.value);
+};
 
 // Enter eyedropper mode
-let icon = document.getElementbyId("eyeDropperIcon")
+const icon = document.getElementbyId("eyeDropperIcon")
 icon.addEventListener('click', e => {
-	eyeDropper.open()
-	.then(colorSelectionResult => {
-    	// returns hex color value (#RRGGBB) of the selected pixel
-    	console.log(colorSelectionResult.sRGBHex);
-	})
-	.catch(error => {
-    	// handle the user choosing to exit eyedropper mode without a selection
-	});
+	 eyeDropper.showPicker();
 });
 ```
 
 
 ## Caveats, shortcomings, and other drawbacks of design choices, both current and any prior iterations
 
-The “open” method is a bit generic for HTMLInputElement. Maybe it can be renamed?
+&lt;input> is mainly event-based, and the current EyeDropper API is promise-based.
 
-&lt;input> is mainly event-based, and the current EyeDropper API is promise-based. Is it reasonable to do both?
+A previous iteration of this proposal suggested specifying an `EyeDropper` constructor to create an `input` element with the appropriate attributes set, and an `open()` method, as a way to improve compatibility with existing web content. This has now been dropped for simplicity.
 
-The EyeDropper API [uses [SecureContext]](https://github.com/WICG/eyedropper-api/issues/15), which might be hard with &lt;input>. Is it needed?
+The EyeDropper API [uses [SecureContext]](https://github.com/WICG/eyedropper-api/issues/15), which might be hard with &lt;input>. The proposal above does not use SecureContext, but has other mitigations to prevent attacks.
 
 
 ## Draft specification
 
-To be written.
+The `input` element would have a new boolean attribute `eyedropper`, which only applies when the `type` attribute is in the [Color](https://html.spec.whatwg.org/#color-state-%28type%3Dcolor%29) state. When specified, the element represents a color well control that opens an eye dropper.
 
+For the purpose of the [show a picker, if applicable](https://html.spec.whatwg.org/#show-the-picker,-if-applicable) algorithm, the relevant user interface is an eye dropper, to select a color from a pixel on the screen, or within the browser, as appropriate for the platform and the user agent.
+
+The eye dropper user interface has an explicit commit action and no intermediate manipulation. The end user's selection occurs only when the user explicitly selects a color using the eye dropper.
+
+The user activation that caused the eye dropper to open must not itself select a color.
+
+After the eye dropper is opened, the user agent must not allow a color to be selected until the eye dropper user interface has been visibly presented for at least 500ms.
+
+The user agent must also ignore a color-selection activation that the platform would treat as part of the same multi-click sequence as the activation that opened the eye dropper.
+
+> Note:
+> This protects against click-jacking, where the user is tricked into double-clicking and unknowingly selects a color.
+
+When the `eyedropper` attribute is present:
+
+* The `colorspace` attribute applies.
+* The `alpha` attribute does not apply (must be ignored and must not be specified).
+* The `list` attribute does not apply (must be ignored and must not be specified).
+
+The user agent must at most update the value once each time the eye dropper is opened.
+
+> Note:
+> Updating the value continuously while the user moves the eye dropper around, or as content changes underneath, could leak information.
+
+While the eye dropper is open, device input events (e.g. mouse and keyboard events) must be suppressed.
+
+> Note:
+> This makes it harder for an attacker to know which pixel was selected, or to move elements in response to moving the eye dropper.
+
+If, while the eye dropper is open, the element's `eyedropper` attribute is removed, the element's `type` attribute is no longer in the [Color](https://html.spec.whatwg.org/#color-state-%28type%3Dcolor%29) state, the element is no longer [mutable](https://html.spec.whatwg.org/#concept-fe-mutable), or the element's [node document](https://dom.spec.whatwg.org/#concept-node-document) is no longer [fully active](https://html.spec.whatwg.org/#fully-active), then the user agent must dismiss the eye dropper without selecting a color.
+
+User agents must allow users to dismiss the eye dropper without selecting a color.
+
+When the eye dropper is **dismissed without selecting a color** for an `input` element *element*, the user agent must [queue an element task](https://html.spec.whatwg.org/#queue-an-element-task) on the [user interaction task source](https://html.spec.whatwg.org/#user-interaction-task-source) given *element* to [fire an event](https://dom.spec.whatwg.org/#concept-event-fire) named `cancel` at *element*, with the `bubbles` attribute initialized to true.
+
+If the user successfully selects a color using the eye dropper for an `input` element, then the [value](https://html.spec.whatwg.org/#concept-fe-value) must be set to the result of [serializing a color well control color](https://html.spec.whatwg.org/#serialize-a-color-well-control-color) given the element and the end user's selection.
+
+For the purposes of [updating and serializing a color well control color](https://html.spec.whatwg.org/#serialize-a-color-well-control-color), an `input` element whose `eyedropper` attribute is specified must be treated as if its `alpha` attribute were not specified.
+
+Whenever the `eyedropper` attribute is added or removed, if the element's `type` attribute is in the [Color](https://html.spec.whatwg.org/#color-state-%28type%3Dcolor%29) state, the user agent must run [update a color well control color](https://html.spec.whatwg.org/#update-a-color-well-control-color) for the element.
+
+IDL:
+
+```
+partial interface HTMLInputElement {
+  [CEReactions, Reflect] attribute boolean eyeDropper;
+};
+```
+
+### Rendering
+
+#### The input element as an eye dropper control
+
+An `input` element whose `type` attribute is in the [Color](https://html.spec.whatwg.org/#color-state-%28type%3Dcolor%29) state and has an `eyedropper` attribute specified, is [expected](https://html.spec.whatwg.org/#expected) to depict a color well, which, when activated, provides the user with an eye dropper to allow selecting a color from the screen.
+
+> Issue:
+> What should the button contain? An "eye dropper" icon would be good, but also showing the selected color. Further, it should be possible to customize (at least with `appearance: base`).
 
 ## Incubation and/or standardization destination
 
-Incubation could be in WICG/eyedropper-api, standardization in WHATWG HTML.
+Incubation could in a whatwg/html PR, standardization in WHATWG HTML.
