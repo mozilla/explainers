@@ -1,26 +1,26 @@
-# EyeDropper as &lt;input> explainer
+# EyeDropper as `<input>` explainer
 
 Author: [Simon Pieters](https://github.com/zcorpan)
 
 ## User problems to be solved
 
-Users want to be able to pick a color from the screen, e.g. in a painting or photo editor web app in order to use a color from the current canvas/photo or possibly from another application. Typically this is done with a button to activate “eyedropper mode” where the cursor becomes an eyedropper to pick a color. Existing web APIs don’t provide a way to read pixel data outside of &lt;canvas>.
+Users want to be able to pick a color from the screen, e.g. in a painting or photo editor web app in order to use a color from the current canvas/photo or possibly from another application. Typically this is done with a button to activate “eyedropper mode” where the cursor becomes an eyedropper to pick a color. Existing web APIs don’t provide a way to read pixel data outside of `<canvas>`.
 
 
 ## Methodology for approaching & evaluating solutions
 
 Research the UX of existing eyedropper color selectors in native apps and web apps. Is it activated from a button, keyboard shortcut, etc? Is it closed when a color is picked, or stays open? How are non-sRGB colors handled? Can colors outside the viewport be picked? Are colors picked continuously while hovering, or only when clicking? Make sure the proposed solution is sufficiently rich to be adopted, but also doesn’t introduce privacy or security issues.
 
-The proposed solution should be such that it does not duplicate effort when improving aspects of other color features, e.g. wide gamut for &lt;input type=color>. Ideally, the proposed solution will build on and work with existing color features in the platform.
+The proposed solution should be such that it does not duplicate effort when improving aspects of other color features, e.g. wide gamut for `<input type=color>`. Ideally, the proposed solution will build on and work with existing color features in the platform.
 
 The proposed solution should be easy to use and style declaratively without needing to implement a custom button with JS, and advance our [vision for the Declarative Web](https://www.mozilla.org/en-US/about/webvision/full/#thedeclarativeweb).
 
 
 ## Prior features and proposals
 
-[Proposal: &lt;input type=color> hint for eyedropper-only](https://github.com/whatwg/html/issues/5584) was filed in May 2020, and is essentially the same as the proposal in this explainer.
+[Proposal: `<input type=color>` hint for eyedropper-only](https://github.com/whatwg/html/issues/5584) was filed in May 2020, and is essentially the same as the proposal in this explainer.
 
-[The EyeDropper API proposal](https://github.com/MicrosoftEdge/MSEdgeExplainers/blob/main/EyeDropper/explainer.md) was created in August 2020, which was [moved to WICG](https://github.com/wicg/eyedropper-api/) in August 2021. The &lt;input type=color> proposal was closed without further discussion. [Chromium shipped EyeDropper API in M95](https://chromestatus.com/feature/6304275594477568).
+[The EyeDropper API proposal](https://github.com/MicrosoftEdge/MSEdgeExplainers/blob/main/EyeDropper/explainer.md) was created in August 2020, which was [moved to WICG](https://github.com/wicg/eyedropper-api/) in August 2021. The `<input type=color>` proposal was closed without further discussion. [Chromium shipped EyeDropper API in M95](https://chromestatus.com/feature/6304275594477568).
 
 [iam-medvedev/eyedropper-polyfill](https://github.com/iam-medvedev/eyedropper-polyfill) is a JS-based polyfill for the EyeDropper API.
 
@@ -29,14 +29,14 @@ The proposed solution should be easy to use and style declaratively without need
 
 ## Flaws or limitations in existing features/proposals
 
-The EyeDropper API only supports sRGB. `&lt;input type=color>` supports wide-gamut with [`colorspace=display-p3`](https://html.spec.whatwg.org/#attr-input-colorspace).
+The EyeDropper API only supports sRGB. `<input type=color>` supports wide-gamut with [`colorspace=display-p3`](https://html.spec.whatwg.org/#attr-input-colorspace).
 
 The EyeDropper API has no declarative button built-in.
 
 
 ## Proposed solution
 
-See [Consider extending &lt;input type=color> instead](https://github.com/WICG/eyedropper-api/issues/35).
+See [Consider extending `<input type=color>` instead](https://github.com/WICG/eyedropper-api/issues/35).
 
 ## Examples
 
@@ -68,16 +68,16 @@ icon.addEventListener('click', e => {
 
 ## Caveats, shortcomings, and other drawbacks of design choices, both current and any prior iterations
 
-&lt;input> is mainly event-based, and the current EyeDropper API is promise-based.
+`<input>` is mainly event-based, and the current EyeDropper API is promise-based.
 
 A previous iteration of this proposal suggested specifying an `EyeDropper` constructor to create an `input` element with the appropriate attributes set, and an `open()` method, as a way to improve compatibility with existing web content. This has now been dropped for simplicity.
 
-The EyeDropper API [uses [SecureContext]](https://github.com/WICG/eyedropper-api/issues/15), which might be hard with &lt;input>. The proposal above does not use SecureContext, but has other mitigations to prevent attacks.
+The EyeDropper API [uses [SecureContext]](https://github.com/WICG/eyedropper-api/issues/15), which might be hard with `<input>`. The proposal above does not use SecureContext, but has other mitigations to prevent attacks.
 
 
 ## Draft specification
 
-The `input` element would have a new boolean attribute `eyedropper`, which only applies when the `type` attribute is in the [Color](https://html.spec.whatwg.org/#color-state-%28type%3Dcolor%29) state. When specified, the element represents a color well control that opens an eye dropper.
+The `input` element, when the `type` attribute is in the [Color](https://html.spec.whatwg.org/#color-state-%28type%3Dcolor%29) state, may have the boolean attribute `eyedropper` specified. When specified, and the attribute applies, the element represents a color well control that opens an eye dropper.
 
 For the purpose of the [show a picker, if applicable](https://html.spec.whatwg.org/#show-the-picker,-if-applicable) algorithm, the relevant user interface is an eye dropper, to select a color from a pixel on the screen, or within the browser, as appropriate for the platform and the user agent.
 
@@ -100,12 +100,12 @@ When the `eyedropper` attribute is present:
 
 The user agent must at most update the value once each time the eye dropper is opened.
 
-> Note:
+> [!NOTE]
 > Updating the value continuously while the user moves the eye dropper around, or as content changes underneath, could leak information.
 
 While the eye dropper is open, device input events (e.g. mouse and keyboard events) must be suppressed.
 
-> Note:
+> [!NOTE]
 > This makes it harder for an attacker to know which pixel was selected, or to move elements in response to moving the eye dropper.
 
 If, while the eye dropper is open, the element's `eyedropper` attribute is removed, the element's `type` attribute is no longer in the [Color](https://html.spec.whatwg.org/#color-state-%28type%3Dcolor%29) state, the element is no longer [mutable](https://html.spec.whatwg.org/#concept-fe-mutable), or the element's [node document](https://dom.spec.whatwg.org/#concept-node-document) is no longer [fully active](https://html.spec.whatwg.org/#fully-active), then the user agent must dismiss the eye dropper without selecting a color.
@@ -134,8 +134,7 @@ partial interface HTMLInputElement {
 
 An `input` element whose `type` attribute is in the [Color](https://html.spec.whatwg.org/#color-state-%28type%3Dcolor%29) state and has an `eyedropper` attribute specified, is [expected](https://html.spec.whatwg.org/#expected) to depict a color well, which, when activated, provides the user with an eye dropper to allow selecting a color from the screen.
 
-> Issue:
-> What should the button contain? An "eye dropper" icon would be good, but also showing the selected color. Further, it should be possible to customize (at least with `appearance: base`).
+**Issue:** What should the button contain? An "eye dropper" icon would be good, but also showing the selected color. Further, it should be possible to customize (at least with `appearance: base`).
 
 ## Incubation and/or standardization destination
 
