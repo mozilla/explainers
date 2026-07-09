@@ -18,6 +18,7 @@ Oldest first:
 * [Standard Measures with U.S. English](standard-measures-en-us.md)
 * [Web API for Messaging Layer Security (MLS)](MessagingLayerSecurity.md)
 * [Trusted or Sanitized HTML](trusted-or-sanitized-html.md)
+* [TC39: Datetime Formatting Option Alignment](tc39-datetime-alignment.md)
 * ...
 
 ## Feedback on Explainers
