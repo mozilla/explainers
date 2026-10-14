@@ -75,6 +75,42 @@ A previous iteration of this proposal suggested specifying an `EyeDropper` const
 The EyeDropper API [uses [SecureContext]](https://github.com/WICG/eyedropper-api/issues/15), which might be hard with `<input>`. The proposal above does not use SecureContext, but has other mitigations to prevent attacks.
 
 
+## Security and privacy considerations
+
+An eye dropper lets a page read pixels it otherwise can't, including cross-origin content, other applications, and browser UI. The design relies on the user explicitly picking a color as consent to reveal that one pixel. See [WICG/eyedropper-api#13](https://github.com/WICG/eyedropper-api/issues/13) for earlier discussion.
+
+### Threats
+
+**Click-jacking cross-origin pixels.** A page can get the user to click twice, e.g. in a game: the first click opens the eye dropper, the second lands on a cross-origin iframe (or another application) positioned under the cursor. This leaks one pixel per two clicks. The iframe can be scaled up with CSS so that any click within a large area picks the same pixel of the cross-origin content.
+
+**Leaking browser history via `:visited`.** See [WICG/eyedropper-api#34](https://github.com/WICG/eyedropper-api/issues/34). A web app where an eye dropper is part of the normal workflow (e.g. an image editor) can overlay its UI with a nearly transparent link whose `:link` and `:visited` styles differ slightly. The picked color then reveals whether the link was visited, every time the user uses the eye dropper, without them noticing. Several overlapping links using different color channels can leak several bits per pick. The restrictions on `:visited` styling don't prevent this, since the page only needs the rendered color to differ.
+
+Styling all links as unvisited while the eye dropper is open would prevent legitimate use (e.g. picking the color of a visited link when designing a website). We think the solution is to partition `:visited` ([w3c/csswg-drafts#3012](https://github.com/w3c/csswg-drafts/issues/3012)), so that a link is only styled as visited if it was visited from the same top-level site and frame origin. The eye dropper could then only reveal history the page could already know. This also addresses other `:visited` attacks. Chromium [has shipped](https://github.com/kyraseevers/Partitioning-visited-links-history) partitioned `:visited` links.
+
+**Screen contents outside the page.** The eye dropper can pick colors from other windows, notifications, or the desktop. This is a feature, but it means click-jacking isn't limited to content the page embeds.
+
+### Existing mitigations in Chromium
+
+As of [6ca4e60](https://github.com/chromium/chromium/tree/6ca4e60b94475fa916dfb688608e6cc72693a1bf), Chromium's EyeDropper API implementation has these mitigations:
+
+* `open()` requires [transient activation](https://github.com/chromium/chromium/blob/6ca4e60b94475fa916dfb688608e6cc72693a1bf/third_party/blink/renderer/modules/eyedropper/eye_dropper.cc#L106), which the browser process [checks again and consumes](https://github.com/chromium/chromium/blob/6ca4e60b94475fa916dfb688608e6cc72693a1bf/content/browser/eye_dropper_chooser_impl.cc#L63-L71). Each pick needs a new user activation.
+* Only [one eye dropper can be open per tab](https://github.com/chromium/chromium/blob/6ca4e60b94475fa916dfb688608e6cc72693a1bf/content/browser/eye_dropper_chooser_impl.cc#L107-L116) at a time.
+* Color selection is [ignored for 500ms](https://github.com/chromium/chromium/blob/6ca4e60b94475fa916dfb688608e6cc72693a1bf/components/eye_dropper/eye_dropper_view.cc#L391-L393) after opening. Selection happens on [mouse release](https://github.com/chromium/chromium/blob/6ca4e60b94475fa916dfb688608e6cc72693a1bf/components/eye_dropper/eye_dropper_view_aura.cc#L158-L161), so this prevents the release of the click that opened the eye dropper from selecting a color.
+* The user can dismiss the eye dropper with [Escape](https://github.com/chromium/chromium/blob/6ca4e60b94475fa916dfb688608e6cc72693a1bf/components/eye_dropper/eye_dropper_view_aura.cc#L82-L84), and it's [dismissed on focus change](https://github.com/chromium/chromium/blob/6ca4e60b94475fa916dfb688608e6cc72693a1bf/components/eye_dropper/eye_dropper_view_aura.cc#L130-L134). The page can only dismiss it with an `AbortSignal`.
+* The screen is [captured once when the eye dropper opens](https://github.com/chromium/chromium/blob/6ca4e60b94475fa916dfb688608e6cc72693a1bf/components/eye_dropper/eye_dropper_view.cc#L137-L138), and the cursor is replaced with a magnifier showing that capture. Content that's hidden or inserted after opening can't be picked, and the user sees a magnified view of what they're picking.
+* Only a single sRGB color is returned, not the coordinates.
+
+### Limitations of Chromium's mitigations
+
+* Nothing other than the 500ms delay prevents click-jacking. A second click after 500ms still picks a color, so a page can use a two-click interaction with a pause.
+* The 500ms delay only applies to the Aura implementation (Windows, ChromeOS, and Linux without the XDG portal). On macOS, Chromium uses [`NSColorSampler`](https://github.com/chromium/chromium/blob/6ca4e60b94475fa916dfb688608e6cc72693a1bf/chrome/browser/ui/views/eye_dropper/eye_dropper_view_mac.mm), and on Linux with the XDG portal it uses the portal's [`PickColor`](https://github.com/chromium/chromium/blob/6ca4e60b94475fa916dfb688608e6cc72693a1bf/chrome/browser/ui/views/eye_dropper/eye_dropper_portal.cc#L127). There's no Chromium-side delay in either case.
+* The [IDL](https://github.com/chromium/chromium/blob/6ca4e60b94475fa916dfb688608e6cc72693a1bf/third_party/blink/renderer/modules/eyedropper/eye_dropper.idl) has no permissions policy, so cross-origin iframes can open an eye dropper too.
+* There's no filtering by origin: the capture is of the whole screen.
+* Capturing at open only protects against content that isn't visible yet. Cross-origin content can be visible all along while looking harmless.
+
+The draft specification below requires the 500ms delay regardless of platform, ignores a selection that's part of the same multi-click sequence as the click that opened the eye dropper, suppresses input events while the eye dropper is open, and updates the value at most once per opening. Like Chromium, it doesn't fully prevent click-jacking with a delayed second click.
+
+
 ## Draft specification
 
 The `input` element, when the `type` attribute is in the [Color](https://html.spec.whatwg.org/#color-state-%28type%3Dcolor%29) state, may have the boolean attribute `eyedropper` specified. When specified, and the attribute applies, the element represents a color well control that opens an eye dropper.
