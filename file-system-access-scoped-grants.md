@@ -3,7 +3,7 @@
 * **Short name:** `file-system-access-scoped-grants`
 * **Status:** Draft counter-proposal, for discussion. This explainer does not change Mozilla’s [standards position](https://github.com/mozilla/standards-positions/issues/154) on the File System Access API.
 * **Authors:** [Simon Pieters](https://github.com/zcorpan), [Arnaud Bienner](https://github.com/ArnaudBienner), [Harveer Singh](https://github.com/hsingh-moz), [Andrew Sutherland](https://github.com/asutherland), [Sam Lloyd](https://github.com/slloydmoz)
-* **Feedback:** *TBD (issue link)*
+* **Feedback:** https://github.com/WICG/file-system-access/issues/475
 
 ## Summary
 
