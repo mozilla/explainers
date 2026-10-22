@@ -18,6 +18,7 @@ Oldest first:
 * [Standard Measures with U.S. English](standard-measures-en-us.md)
 * [Web API for Messaging Layer Security (MLS)](MessagingLayerSecurity.md)
 * [Trusted or Sanitized HTML](trusted-or-sanitized-html.md)
+* [File System Access: scoped, visible and revocable grants](file-system-access-scoped-grants.md)
 * ...
 
 ## Feedback on Explainers
